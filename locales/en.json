@@ -1,0 +1,18 @@
+{
+    "hero": {
+      "title": "Hi, I'm [Your Name], Fullstack Developer",
+      "description": "I build modern and scalable web applications."
+    },
+    "projects": {
+      "title": "My Projects",
+      "filter_all": "All",
+      "filter_frontend": "Frontend",
+      "filter_backend": "Backend",
+      "filter_mobile": "Mobile"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "submit": "Send Message"
+    }
+  }
+  

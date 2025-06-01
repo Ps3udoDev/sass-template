@@ -1,0 +1,87 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"vcs": {
+	  "enabled": true,
+	  "clientKind": "git",
+	  "useIgnoreFile": true
+	},
+	"files": {
+	  "ignoreUnknown": false,
+	  "include": [
+		"src/**/*.{js,jsx,ts,tsx}",
+		"pages/**/*.{js,jsx,ts,tsx}",
+		"app/**/*.{js,jsx,ts,tsx}",
+		"components/**/*.{js,jsx,ts,tsx}",
+		"lib/**/*.{js,jsx,ts,tsx}",
+		"utils/**/*.{js,jsx,ts,tsx}",
+		"hooks/**/*.{js,jsx,ts,tsx}",
+		"*.{js,jsx,ts,tsx}"
+	  ],
+	  "ignore": [
+		"node_modules/**",
+		".next/**",
+		"out/**",
+		"build/**",
+		"dist/**",
+		".vercel/**",
+		"coverage/**",
+		"*.config.js",
+		"*.config.ts"
+	  ]
+	},
+	"formatter": {
+	  "enabled": true,
+	  "formatWithErrors": false,
+	  "indentStyle": "space",
+	  "indentWidth": 2,
+	  "lineWidth": 80,
+	  "lineEnding": "lf",
+	  "ignore": []
+	},
+	"organizeImports": {
+	  "enabled": true
+	},
+	"linter": {
+	  "enabled": true,
+	  "rules": {
+		"recommended": true,
+		"correctness": {
+		  "noUnusedVariables": "error",
+		  "noUnusedImports": "error",
+		  "useExhaustiveDependencies": "warn"
+		},
+		"style": {
+		  "noImplicitBoolean": "error",
+		  "useForOf": "error",
+		  "noUselessElse": "error",
+		  "useBlockStatements": "off"
+		},
+		"suspicious": {
+		  "noExplicitAny": "warn",
+		  "noArrayIndexKey": "warn"
+		},
+		"nursery": {
+		  "useSortedClasses": "error"
+		}
+	  }
+	},
+	"javascript": {
+	  "formatter": {
+		"quoteStyle": "single",
+		"trailingCommas": "es5",
+		"semicolons": "asNeeded",
+		"quoteProperties": "asNeeded",
+		"bracketSpacing": true,
+		"arrowParentheses": "always"
+	  }
+	},
+	"json": {
+	  "formatter": {
+		"enabled": true,
+		"indentStyle": "space",
+		"indentWidth": 2,
+		"lineWidth": 80
+	  }
+	}
+  }
+  
