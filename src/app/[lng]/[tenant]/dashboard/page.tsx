@@ -18,7 +18,6 @@ export default function DashboardPage({ params }: DashboardPageProps) {
   const userModules = session.modules || [];
 
   const availableModules = mockModules.filter((mod) => userModules.includes(mod.id));
-  console.log(availableModules)
 
   return (
     <div className="flex justify-center items-start min-h-[80vh] pt-16">

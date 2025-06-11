@@ -151,7 +151,6 @@ interface BenefitCardProps {
 }
 
 function BenefitCard({ benefit, index }: BenefitCardProps) {
-    console.log('benefit.title', benefit.title);
     const t = useTranslations();
     return (
         <motion.div

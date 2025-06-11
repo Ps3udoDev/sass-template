@@ -16,3 +16,20 @@ export const mockModules = [
         href: 'poultry/laying-hens',
     },
 ];
+
+export const mockTenants = [
+    {
+        id: 'hacienda-01',
+        name: 'Hacienda 01',
+        logo: '/logos/hacienda-01.jpeg',
+        primaryColor: '#000000',
+        modules: ['shrimp', 'laying-hens'],
+    },
+    {
+        id: 'ganaderia-feliz',
+        name: 'Ganaderia Feliz',
+        logo: '/logos/ganaderia-feliz.jpeg',
+        primaryColor: '#000000',
+        modules: ['shrimp'],
+    }
+];
