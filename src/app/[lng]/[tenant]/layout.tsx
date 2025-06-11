@@ -1,17 +1,20 @@
 'use client';
 
+import Footer from "@/components/public/Footer";
+import Header from "@/components/public/Header";
 import { getSession } from "@/lib/session";
 import { useRouter } from "next/navigation"
 import React, { useEffect } from "react";
 
 interface TenantLayoutProps {
     children: React.ReactNode;
-    params: Promise<{ lng: string; }>;
+    params: Promise<{ lng: string; tenant: string }>;
 }
 
 export default function TenantLayout({ children, params }: TenantLayoutProps) {
     const router = useRouter();
-    const { lng } = React.use(params);
+    const resolvedParams = React.use(params);
+    const { lng, tenant } = resolvedParams;
 
     useEffect(() => {
         const session = getSession();
@@ -22,7 +25,12 @@ export default function TenantLayout({ children, params }: TenantLayoutProps) {
 
     return (
         <div className="min-h-screen bg-gray-100">
-            {children}
+            <Header lng={lng} tenant={tenant} />
+            <main className="pt-20">
+                {children}
+            </main>
+
+            <Footer lng={lng} />
         </div>
     )
 }
