@@ -22,7 +22,7 @@ export function Tooltip({ children, message, position = "top" }: TooltipProps) {
             {children}
             {showTooltip && (
                 <div
-                    className={`absolute z-10 px-2 py-1 text-xs text-black border-2 border-blue-500 rounded transition-opacity duration-200 ${positionClasses[position]}`}
+                    className={`absolute z-10 px-2 py-1 text-xs text-black rounded transition-opacity duration-200 ${positionClasses[position]}`}
                 >
                     {message}
                 </div>

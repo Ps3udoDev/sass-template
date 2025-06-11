@@ -2,9 +2,13 @@
   "dashboard": {
     "title": "Panel de Módulos",
     "modules": {
-      "camarones": {
+      "shrimp": {
         "name": "Camaronero",
         "description": "Manejo de piscinas y ciclos de camarón"
+      },
+      "laying-hens": {
+        "name": "Gallinas Ponedoras",
+        "description": "Manejo de gallinas y huevos"
       }
     }
   }

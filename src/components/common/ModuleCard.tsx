@@ -8,10 +8,9 @@ import { Tooltip } from "../ui/feedback/Toolpit";
 
 export const ModuleCard = ({ id, name, description, icon, href, color }: ModuleCardProps) => {
     const t = useTranslations();
-    console.log(href)
 
     return (
-        <Tooltip message={name} position="right">
+        <Tooltip message={name} position="bottom">
             <Link href={href}>
                 <div
                     className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center rounded-2xl shadow-md hover:shadow-lg transition"

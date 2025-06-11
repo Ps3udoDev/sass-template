@@ -12,16 +12,18 @@ interface DashboardPageProps {
 export default function DashboardPage({ params }: DashboardPageProps) {
   const resolvedParams = React.use(params);
   const { lng, tenant } = resolvedParams;
-
-  console.log(tenant, lng);
-
-  const modules = mockModules;
   const t = useTranslations();
+
+  const session = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('session') || '{}') : {};
+  const userModules = session.modules || [];
+
+  const availableModules = mockModules.filter((mod) => userModules.includes(mod.id));
+  console.log(availableModules)
 
   return (
     <div className="flex justify-center items-start min-h-[80vh] pt-16">
       <div className="flex flex-wrap justify-center gap-4 max-w-screen-lg w-full">
-        {modules.map((mod) => (
+        {availableModules.map((mod) => (
           <div key={mod.id} className="flex justify-center">
             <ModuleCard
               id={mod.id}

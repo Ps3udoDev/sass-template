@@ -1,10 +1,18 @@
 export const mockModules = [
     {
-        id: 'camarones',
-        name: 'dashboard.modules.camarones.name',
-        description: 'dashboard.modules.camarones.description',
+        id: 'shrimp',
+        name: 'dashboard.modules.shrimp.name',
+        description: 'dashboard.modules.shrimp.description',
         icon: '/icons/shrimp.png',
         color: '#E0F7FA',
         href: 'aquaculture/shrimp',
+    },
+    {
+        id: 'laying-hens',
+        name: 'dashboard.modules.laying-hens.name',
+        description: 'dashboard.modules.laying-hens.description',
+        icon: '/icons/laying-hens.jpeg',
+        color: '#E0F7FA',
+        href: 'poultry/laying-hens',
     },
 ];

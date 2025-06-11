@@ -2,9 +2,13 @@
   "dashboard": {
     "title": "Module Dashboard",
     "modules": {
-      "camarones": {
+      "shrimp": {
         "name": "Shrimp Farming",
         "description": "Manage ponds and shrimp cycles"
+      },
+      "laying-hens": {
+        "name": "Laying Hens",
+        "description": "Manage hens and eggs"
       }
     }
   }
