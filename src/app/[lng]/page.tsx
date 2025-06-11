@@ -2,6 +2,8 @@ import Header from "@/components/public/Header";
 import * as motion from "motion/react-client";
 import type { Variants } from "motion/react";
 import React from "react";
+import Footer from "@/components/public/Footer";
+import { useTranslations } from "next-intl";
 
 interface HomeProps {
     params: Promise<{ lng: string }>;
@@ -10,7 +12,7 @@ interface HomeProps {
 export default function Home({ params }: HomeProps) {
     const resolvedParams = React.use(params);
     const { lng } = resolvedParams;
-
+    const t = useTranslations();
     return (
         <>
             <Header lng={lng} />
@@ -23,7 +25,7 @@ export default function Home({ params }: HomeProps) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        Bienvenido a MiSaaS
+                        {t('home.title')}
                     </motion.h1>
 
                     <motion.p
@@ -32,8 +34,7 @@ export default function Home({ params }: HomeProps) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        Transform your business with our innovative SaaS solution.
-                        Experience the power of modern technology at your fingertips.
+                        {t('home.description')}
                     </motion.p>
 
                     <motion.button
@@ -44,7 +45,7 @@ export default function Home({ params }: HomeProps) {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        Comenzar Ahora
+                        {t('home.cta')}
                     </motion.button>
                 </div>
             </section>
@@ -58,7 +59,7 @@ export default function Home({ params }: HomeProps) {
                         viewport={{ once: true, amount: 0.8 }}
                         variants={titleVariants}
                     >
-                        Nuestros Beneficios
+                        {t('home.benefits')}
                     </motion.h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -82,12 +83,9 @@ export default function Home({ params }: HomeProps) {
                         viewport={{ once: true, amount: 0.6 }}
                         variants={sectionVariants}
                     >
-                        <h2 className="text-4xl font-bold mb-8">Sobre Nosotros</h2>
+                        <h2 className="text-4xl font-bold mb-8">{t('home.about')}</h2>
                         <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
-                            Somos una empresa innovadora dedicada a crear soluciones SaaS
-                            que transforman la manera en que las empresas operan. Con años
-                            de experiencia en tecnología, nos especializamos en desarrollar
-                            herramientas intuitivas y poderosas.
+                            {t('home.aboutDescription')}
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
@@ -108,7 +106,7 @@ export default function Home({ params }: HomeProps) {
                         viewport={{ once: true, amount: 0.8 }}
                         variants={titleVariants}
                     >
-                        Nuestros Productos
+                        {t('home.products')}
                     </motion.h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -131,16 +129,18 @@ export default function Home({ params }: HomeProps) {
                         viewport={{ once: true, amount: 0.8 }}
                         variants={ctaVariants}
                     >
-                        <h2 className="text-4xl font-bold mb-8">¿Listo para comenzar?</h2>
+                        <h2 className="text-4xl font-bold mb-8">{t('home.ctaTitle')}</h2>
                         <p className="text-xl mb-8 max-w-2xl mx-auto">
-                            Únete a miles de empresas que ya han transformado su negocio con MiSaaS
+                            {t('home.ctaDescription')}
                         </p>
                         <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                            Empezar Gratis
+                            {t('home.ctaButton')}
                         </button>
                     </motion.div>
                 </div>
             </section>
+
+            <Footer lng={lng} />
         </>
     );
 }
@@ -151,6 +151,8 @@ interface BenefitCardProps {
 }
 
 function BenefitCard({ benefit, index }: BenefitCardProps) {
+    console.log('benefit.title', benefit.title);
+    const t = useTranslations();
     return (
         <motion.div
             className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
@@ -162,8 +164,8 @@ function BenefitCard({ benefit, index }: BenefitCardProps) {
             whileHover={{ y: -5 }}
         >
             <div className="text-4xl mb-4">{benefit.icon}</div>
-            <h3 className="text-2xl font-semibold mb-4">{benefit.title}</h3>
-            <p className="text-gray-600">{benefit.description}</p>
+            <h3 className="text-2xl font-semibold mb-4">{t(benefit.title)}</h3>
+            <p className="text-gray-600">{t(benefit.description)}</p>
         </motion.div>
     );
 }
@@ -174,6 +176,7 @@ interface StatCardProps {
 }
 
 function StatCard({ stat, index }: StatCardProps) {
+    const t = useTranslations();
     return (
         <motion.div
             className="text-center"
@@ -184,7 +187,7 @@ function StatCard({ stat, index }: StatCardProps) {
             transition={{ delay: index * 0.2 }}
         >
             <div className="text-4xl font-bold text-blue-600 mb-2">{stat.number}</div>
-            <div className="text-gray-600">{stat.label}</div>
+            <div className="text-gray-600">{t(stat.label)}</div>
         </motion.div>
     );
 }
@@ -195,6 +198,7 @@ interface ProductCardProps {
 }
 
 function ProductCard({ product, index }: ProductCardProps) {
+    const t = useTranslations();
     return (
         <motion.div
             className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
@@ -205,11 +209,11 @@ function ProductCard({ product, index }: ProductCardProps) {
             transition={{ delay: index * 0.1 }}
             whileHover={{ scale: 1.02 }}
         >
-            <h3 className="text-xl font-semibold mb-4">{product.name}</h3>
-            <p className="text-gray-600 mb-4">{product.description}</p>
-            <div className="text-2xl font-bold text-blue-600 mb-4">{product.price}</div>
+            <h3 className="text-xl font-semibold mb-4">{t(product.name)}</h3>
+            <p className="text-gray-600 mb-4">{t(product.description)}</p>
+            <div className="text-2xl font-bold text-blue-600 mb-4">{t(product.price)}</div>
             <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                Más Información
+                {t('home.moreInfo')}
             </button>
         </motion.div>
     );
@@ -314,47 +318,47 @@ const ctaVariants: Variants = {
 
 const benefits = [
     {
-        title: "Fácil de Usar",
-        description: "Interfaz intuitiva que no requiere conocimientos técnicos avanzados.",
+        title: 'home.benefit1.title',
+        description: 'home.benefit1.description',
         icon: "🚀",
     },
     {
-        title: "Seguridad Avanzada",
-        description: "Protección de datos de nivel empresarial con cifrado de extremo a extremo.",
+        title: 'home.benefit2.title',
+        description: 'home.benefit2.description',
         icon: "🔒",
     },
     {
-        title: "Escalabilidad",
-        description: "Crece con tu negocio sin limitaciones de usuarios o funcionalidades.",
+        title: 'home.benefit3.title',
+        description: 'home.benefit3.description',
         icon: "📈",
     },
     {
-        title: "Soporte 24/7",
-        description: "Asistencia técnica disponible en todo momento para resolver tus dudas.",
+        title: 'home.benefit4.title',
+        description: 'home.benefit4.description',
         icon: "🛠️",
     },
 ];
 
 const stats = [
-    { number: "10,000+", label: "Usuarios Activos" },
-    { number: "99.9%", label: "Tiempo de Actividad" },
-    { number: "500+", label: "Empresas Confían en Nosotros" },
+    { number: 'home.stat1.number', label: 'home.stat1.label' },
+    { number: 'home.stat2.number', label: 'home.stat2.label' },
+    { number: 'home.stat3.number', label: 'home.stat3.label' },
 ];
 
 const products = [
     {
-        name: "Starter",
-        description: "Perfecto para pequeñas empresas que están comenzando.",
-        price: "$29/mes",
+        name: 'home.product1.name',
+        description: 'home.product1.description',
+        price: 'home.product1.price',
     },
     {
-        name: "Professional",
-        description: "Para empresas en crecimiento que necesitan más funcionalidades.",
-        price: "$79/mes",
+        name: 'home.product2.name',
+        description: 'home.product2.description',
+        price: 'home.product2.price',
     },
     {
-        name: "Enterprise",
-        description: "Solución completa para grandes organizaciones.",
-        price: "$199/mes",
+        name: 'home.product3.name',
+        description: 'home.product3.description',
+        price: 'home.product3.price',
     },
 ];

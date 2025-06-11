@@ -11,5 +11,79 @@
         "description": "Manage hens and eggs"
       }
     }
+  },
+  "header": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "login": "Login",
+    "signup": "Sign Up"
+  },
+  "footer": {
+    "copyright": "All rights reserved",
+    "description": "Transform your business with innovative SaaS solutions. Join thousands of companies that already trust us.",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "madeWithLove": "Made with ❤️ in Ecuador",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  },
+  "home": {
+    "title": "Welcome to MiSaaS",
+    "description": "Transform your business with our innovative SaaS solution. Experience the power of modern technology at your fingertips.",
+    "cta": "Get Started Now",
+    "benefits": "Our Benefits",
+    "about": "About Us",
+    "aboutDescription": "We are an innovative company dedicated to creating SaaS solutions that transform the way businesses operate. With years of experience in technology, we specialize in developing intuitive and powerful tools.",
+    "products": "Our Products",
+    "ctaTitle": "Ready to Start?",
+    "ctaDescription": "Join thousands of companies that have transformed their business with MiSaaS",
+    "ctaButton": "Get Started Now",
+    "moreInfo": "More Information",
+    "benefit1": {
+      "title": "Easy to Use",
+      "description": "Intuitive interface that doesn't require advanced technical knowledge."
+    },
+    "benefit2": {
+      "title": "Advanced Security",
+      "description": "Enterprise-level data protection with end-to-end encryption."
+    },
+    "benefit3": {
+      "title": "Scalability",
+      "description": "Grow with your business without limits on users or features."
+    },
+    "benefit4": {
+      "title": "24/7 Support",
+      "description": "Technical support available at all times to resolve your questions."
+    },
+    "stat1": {
+      "number": "99.9%",
+      "label": "Uptime"
+    },
+    "stat2": {
+      "number": "500+",
+      "label": "Companies Trust Us"
+    },
+    "stat3": {
+      "number": "10,000+",
+      "label": "Active Users"
+    },
+    "product1": {
+      "name": "Starter",
+      "description": "Perfect for small businesses just starting out.",
+      "price": "$29/month"
+    },
+    "product2": {
+      "name": "Professional",
+      "description": "For growing businesses that need more features.",
+      "price": "$79/month"
+    },
+    "product3": {
+      "name": "Enterprise",
+      "description": "Complete solution for large organizations.",
+      "price": "$199/month"
+    }
   }
 }

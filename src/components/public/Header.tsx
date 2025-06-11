@@ -1,12 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import LanguageSelector from './LanguageSelector';
+import { useTranslations } from 'next-intl';
 
 interface HeaderProps {
     lng: string;
 }
 
 export default function Header({ lng }: HeaderProps) {
+    const t = useTranslations();
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -29,22 +32,23 @@ export default function Header({ lng }: HeaderProps) {
                         onClick={() => scrollToSection('home')}
                         className="text-gray-600 hover:text-blue-600 transition-colors"
                     >
-                        Home
+                        {t('header.home')}
                     </button>
                     <button
                         onClick={() => scrollToSection('about')}
                         className="text-gray-600 hover:text-blue-600 transition-colors"
                     >
-                        About Us
+                        {t('header.about')}
                     </button>
                     <button
                         onClick={() => scrollToSection('products')}
                         className="text-gray-600 hover:text-blue-600 transition-colors"
                     >
-                        Products
+                        {t('header.products')}
                     </button>
+                    <LanguageSelector currentLang={lng} />
                     <Link href={`/${lng}/auth/sign-in`} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
-                        Login
+                        {t('header.login')}
                     </Link>
                 </nav>
             </div>

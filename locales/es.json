@@ -11,5 +11,79 @@
         "description": "Manejo de gallinas y huevos"
       }
     }
+  },
+  "header": {
+    "home": "Inicio",
+    "about": "Acerca de Nosotros",
+    "products": "Productos",
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse"
+  },
+  "footer": {
+    "copyright": "Todos los derechos reservados",
+    "description": "Transforma tu negocio con soluciones SaaS innovadoras. Únete a miles de empresas que ya confían en nosotros.",
+    "quickLinks": "Enlaces Rápidos",
+    "legal": "Legal",
+    "madeWithLove": "Hecho con ❤️ en Ecuador",
+    "links": {
+      "privacy": "Política de Privacidad",
+      "terms": "Términos de Servicio"
+    }
+  },
+  "home": {
+    "title": "Bienvenido a MiSaaS",
+    "description": "Transforma tu negocio con nuestras soluciones SaaS innovadoras. Experimenta el poder de la tecnología moderna en tus manos.",
+    "cta": "Comenzar Ahora",
+    "benefits": "Nuestros Beneficios",
+    "about": "Acerca de Nosotros",
+    "aboutDescription": "Somos una empresa innovadora dedicada a crear soluciones SaaS que transforman la manera en que las empresas operan. Con años de experiencia en tecnología, nos especializamos en desarrollar herramientas intuitivas y poderosas.",
+    "products": "Nuestros Productos",
+    "ctaTitle": "¿Listo para comenzar?",
+    "ctaDescription": "Únete a miles de empresas que han transformado su negocio con MiSaaS",
+    "ctaButton": "Comenzar Ahora",
+    "moreInfo": "Más Información",
+    "benefit1": {
+      "title": "Fácil de Usar",
+      "description": "Interfaz intuitiva que no requiere conocimientos técnicos avanzados."
+    },
+    "benefit2": {
+      "title": "Seguridad Avanzada",
+      "description": "Protección de datos de nivel empresarial con cifrado de extremo a extremo."
+    },
+    "benefit3": {
+      "title": "Escalabilidad",
+      "description": "Crecer con tu negocio sin limitaciones en usuarios o funcionalidades."
+    },
+    "benefit4": {
+      "title": "Soporte 24/7",
+      "description": "Asistencia técnica disponible en todo momento para resolver tus dudas."
+    },
+    "stat1": {
+      "number": "99.9%",
+      "label": "Tiempo de Actividad"
+    },
+    "stat2": {
+      "number": "500+",
+      "label": "Empresas Confían en Nosotros"
+    },
+    "stat3": {
+      "number": "10,000+",
+      "label": "Usuarios Activos"
+    },
+    "product1": {
+      "name": "Starter",
+      "description": "Perfecto para pequeñas empresas que están comenzando.",
+      "price": "$29/mes"
+    },
+    "product2": {
+      "name": "Professional",
+      "description": "Para empresas en crecimiento que necesitan más funcionalidades.",
+      "price": "$79/mes"
+    },
+    "product3": {
+      "name": "Enterprise",
+      "description": "Solución completa para grandes organizaciones.",
+      "price": "$199/mes"
+    }
   }
 }
