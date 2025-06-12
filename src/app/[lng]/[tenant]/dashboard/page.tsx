@@ -1,7 +1,7 @@
 'use client';
 
 import { ModuleCard } from "@/components/common/ModuleCard";
-import { mockModules } from "@/modules/mockModules";
+import { getAvailableModules } from "@/modules/mockModules";
 import { useTranslations } from "next-intl";
 import React from "react";
 
@@ -17,7 +17,7 @@ export default function DashboardPage({ params }: DashboardPageProps) {
   const session = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('session') || '{}') : {};
   const userModules = session.modules || [];
 
-  const availableModules = mockModules.filter((mod) => userModules.includes(mod.id));
+  const availableModules = getAvailableModules(userModules);
 
   return (
     <div className="flex justify-center items-start min-h-[80vh] pt-16">

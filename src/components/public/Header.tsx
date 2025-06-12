@@ -1,17 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import LanguageSelector from './LanguageSelector';
+import { Menu, X, User, LogOut, Settings, ShoppingCart } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { LogOut, Menu, Settings, User, X } from 'lucide-react';
 import { mockTenants } from '@/modules/mockModules';
 
 interface HeaderProps {
     lng: string;
-    tenant?: string;
+    tenant?: string; // Opcional: si existe, estamos en modo tenant
 }
 
 interface TenantData {
@@ -39,15 +38,18 @@ export default function Header({ lng, tenant }: HeaderProps) {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+    // Verificar si estamos en modo tenant
     const isTenantMode = !!tenant;
 
     useEffect(() => {
+        // Cargar sesión desde localStorage
         if (typeof window !== 'undefined') {
             const sessionData = localStorage.getItem('session');
             if (sessionData) {
                 const parsedSession = JSON.parse(sessionData);
                 setSession(parsedSession);
 
+                // Buscar datos del tenant si estamos en modo tenant
                 if (isTenantMode && parsedSession.tenant) {
                     const currentTenant = mockTenants.find(t => t.id === parsedSession.tenant);
                     setTenantData(currentTenant || null);
@@ -56,6 +58,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
         }
     }, [isTenantMode]);
 
+    // Función para hacer scroll suave (solo para landing page)
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -71,8 +74,45 @@ export default function Header({ lng, tenant }: HeaderProps) {
         router.push(`/${lng}/auth/sign-in`);
     };
 
+    // Función para obtener el link del marketplace dinámicamente
+    const getMarketplaceLink = () => {
+        const pathSegments = pathname.split('/').filter(Boolean);
+        // [lng, tenant, ?, ?, ...]
+
+        if (pathSegments.length === 3 && pathSegments[2] === 'dashboard') {
+            // Estamos en dashboard principal → Marketplace de módulos
+            return `/${lng}/${tenant}/marketplace`;
+        } else if (pathSegments.length >= 4) {
+            // Estamos en un módulo → Marketplace de submódulos
+            const category = pathSegments[2]; // aquaculture, poultry, etc.
+            return `/${lng}/${tenant}/${category}/marketplace`;
+        } else {
+            // Fallback al marketplace de módulos
+            return `/${lng}/${tenant}/marketplace`;
+        }
+    };
+
+    // Función para obtener el texto del marketplace
+    const getMarketplaceText = () => {
+        const pathSegments = pathname.split('/').filter(Boolean);
+
+        if (pathSegments.length === 3 && pathSegments[2] === 'dashboard') {
+            return 'Marketplace';
+        } else if (pathSegments.length >= 4) {
+            return 'Marketplace';
+        } else {
+            return 'Marketplace';
+        }
+    };
+
+    // Verificar si el marketplace está activo
+    const isMarketplaceActive = () => {
+        return pathname.includes('/marketplace');
+    };
+
+    // Navegación para landing page
     const renderLandingNavigation = () => (
-        <nav className="flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-6">
             <button
                 onClick={() => scrollToSection('home')}
                 className="text-gray-600 hover:text-blue-600 transition-colors"
@@ -92,12 +132,16 @@ export default function Header({ lng, tenant }: HeaderProps) {
                 {t('header.products')}
             </button>
             <LanguageSelector currentLang={lng} />
-            <Link href={`/${lng}/auth/sign-in`} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+            <Link
+                href={`/${lng}/auth/sign-in`}
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+            >
                 {t('header.login')}
             </Link>
         </nav>
     );
 
+    // Navegación para tenant dashboard
     const renderTenantNavigation = () => (
         <nav className="hidden md:flex items-center space-x-6">
             <Link
@@ -106,6 +150,14 @@ export default function Header({ lng, tenant }: HeaderProps) {
                     }`}
             >
                 Dashboard
+            </Link>
+            <Link
+                href={getMarketplaceLink()}
+                className={`flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors ${isMarketplaceActive() ? 'text-blue-600 font-medium' : ''
+                    }`}
+            >
+                <ShoppingCart size={16} />
+                <span>{getMarketplaceText()}</span>
             </Link>
             <Link
                 href={`/${lng}/${tenant}/reports`}
@@ -123,6 +175,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
             </Link>
             <LanguageSelector currentLang={lng} />
 
+            {/* User Menu */}
             <div className="relative">
                 <button
                     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
@@ -167,6 +220,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
         </nav>
     );
 
+    // Logo dinámico
     const renderLogo = () => {
         if (isTenantMode && tenantData) {
             return (
@@ -198,6 +252,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
             );
         }
 
+        // Logo por defecto para landing page
         return (
             <Link href={`/${lng}`} className="text-xl font-bold text-blue-700">
                 MiSaaS
@@ -210,8 +265,10 @@ export default function Header({ lng, tenant }: HeaderProps) {
             <div className='max-w-7xl mx-auto flex justify-between items-center'>
                 {renderLogo()}
 
+                {/* Desktop Navigation */}
                 {isTenantMode ? renderTenantNavigation() : renderLandingNavigation()}
 
+                {/* Mobile Menu Button */}
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     className="md:hidden p-2 text-gray-600 hover:text-blue-600"
@@ -220,6 +277,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
                 </button>
             </div>
 
+            {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
                     <div className="px-6 py-4 space-y-4">
@@ -230,6 +288,13 @@ export default function Header({ lng, tenant }: HeaderProps) {
                                     className="block text-gray-600 hover:text-blue-600"
                                 >
                                     Dashboard
+                                </Link>
+                                <Link
+                                    href={getMarketplaceLink()}
+                                    className="flex items-center gap-2 text-gray-600 hover:text-blue-600"
+                                >
+                                    <ShoppingCart size={16} />
+                                    <span>{getMarketplaceText()}</span>
                                 </Link>
                                 <Link
                                     href={`/${lng}/${tenant}/reports`}
