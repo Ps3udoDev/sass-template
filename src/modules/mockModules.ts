@@ -32,7 +32,7 @@ export const modulesConfig: Module[] = [
             {
                 id: 'cycles',
                 name: 'modules.shrimp.cycles.title',
-                href: 'cycles',
+                href: '',
                 icon: '🔄',
                 lucideIcon: 'RefreshCw',
                 description: 'modules.shrimp.cycles.description',
