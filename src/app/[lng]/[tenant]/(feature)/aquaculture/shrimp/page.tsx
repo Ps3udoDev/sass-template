@@ -25,7 +25,6 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
     const t = useTranslations();
     const pathname = usePathname();
 
-    // Datos de ejemplo para el dashboard del módulo
     const stats = [
         {
             title: 'Estanques Activos',
@@ -73,10 +72,8 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
 
     return (
         <div className="space-y-6">
-            {/* Breadcrumb */}
             <Breadcrumb lng={lng} tenant={tenant} />
 
-            {/* Header del módulo */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
@@ -103,7 +100,6 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
                 </div>
             </div>
 
-            {/* Estadísticas principales */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat, index) => (
                     <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -113,7 +109,7 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
                                 <p className="text-2xl font-bold text-gray-900 mt-1">{stat.value}</p>
                                 <div className="flex items-center mt-2">
                                     <span className={`text-sm font-medium ${stat.changeType === 'positive' ? 'text-green-600' :
-                                            stat.changeType === 'negative' ? 'text-red-600' : 'text-gray-600'
+                                        stat.changeType === 'negative' ? 'text-red-600' : 'text-gray-600'
                                         }`}>
                                         {stat.change}
                                     </span>
@@ -129,7 +125,6 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Acciones rápidas */}
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Acciones Rápidas</h3>
                     <div className="space-y-3">
@@ -148,7 +143,6 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
                     </div>
                 </div>
 
-                {/* Actividad reciente */}
                 <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-semibold text-gray-900">Actividad Reciente</h3>
@@ -171,7 +165,6 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
                 </div>
             </div>
 
-            {/* Gráficos de ejemplo */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Producción Semanal</h3>

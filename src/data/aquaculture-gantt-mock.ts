@@ -1,0 +1,277 @@
+import { CycleData, AquacultureTask, getTaskStyle } from '@/types/aquaculture-gantt';
+
+export function generateShrimpCycleMockData(): CycleData[] {
+    const baseDate = new Date('2024-06-01');
+
+    return [
+        {
+            id: 'CYCLE-MONO-001',
+            name: 'Ciclo Monofásico P-001',
+            type: 'monofasico',
+            species: 'shrimp',
+            startDate: new Date(baseDate),
+            endDate: new Date(baseDate.getTime() + 90 * 24 * 60 * 60 * 1000),
+            totalDays: 90,
+            tasks: [
+                {
+                    id: 'mono-prep-1',
+                    name: 'P-001 - Preparación',
+                    start: new Date(baseDate),
+                    end: new Date(baseDate.getTime() + 5 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'en_uso',
+                    poolId: 'P-001',
+                    poolName: 'P-001',
+                    cycleId: 'CYCLE-MONO-001',
+                    cycleName: 'Ciclo Monofásico P-001',
+                    cycleType: 'monofasico',
+                    notes: 'Limpieza y preparación de piscina',
+                    styles: getTaskStyle('en_uso')
+                },
+                {
+                    id: 'mono-inicio-1',
+                    name: 'P-001 - Inicio Ciclo',
+                    start: new Date(baseDate.getTime() + 5 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 6 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'inicio',
+                    poolId: 'P-001',
+                    poolName: 'P-001',
+                    cycleId: 'CYCLE-MONO-001',
+                    cycleName: 'Ciclo Monofásico P-001',
+                    cycleType: 'monofasico',
+                    dependencies: ['mono-prep-1'],
+                    notes: 'Llenado y estabilización',
+                    styles: getTaskStyle('inicio')
+                },
+                {
+                    id: 'mono-siembra-1',
+                    name: 'P-001 - Siembra',
+                    start: new Date(baseDate.getTime() + 6 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 8 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'siembra',
+                    poolId: 'P-001',
+                    poolName: 'P-001',
+                    cycleId: 'CYCLE-MONO-001',
+                    cycleName: 'Ciclo Monofásico P-001',
+                    cycleType: 'monofasico',
+                    dependencies: ['mono-inicio-1'],
+                    density: 50,
+                    biomass: 500,
+                    notes: '500,000 postlarvas sembradas',
+                    styles: getTaskStyle('siembra')
+                },
+                {
+                    id: 'mono-crecimiento-1',
+                    name: 'P-001 - Crecimiento',
+                    start: new Date(baseDate.getTime() + 8 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 85 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 75,
+                    phase: 'en_uso',
+                    poolId: 'P-001',
+                    poolName: 'P-001',
+                    cycleId: 'CYCLE-MONO-001',
+                    cycleName: 'Ciclo Monofásico P-001',
+                    cycleType: 'monofasico',
+                    dependencies: ['mono-siembra-1'],
+                    biomass: 4500,
+                    waterConditions: {
+                        temperature: 28.5,
+                        oxygen: 6.2,
+                        ph: 8.1,
+                        salinity: 32
+                    },
+                    notes: 'Fase de engorde - FCR 1.4',
+                    styles: getTaskStyle('en_uso')
+                },
+                {
+                    id: 'mono-pesca-1',
+                    name: 'P-001 - Cosecha',
+                    start: new Date(baseDate.getTime() + 85 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 90 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 0,
+                    phase: 'pesca',
+                    poolId: 'P-001',
+                    poolName: 'P-001',
+                    cycleId: 'CYCLE-MONO-001',
+                    cycleName: 'Ciclo Monofásico P-001',
+                    cycleType: 'monofasico',
+                    dependencies: ['mono-crecimiento-1'],
+                    biomass: 5200,
+                    notes: 'Cosecha estimada: 5,200 kg',
+                    styles: getTaskStyle('pesca')
+                }
+            ]
+        },
+
+        {
+            id: 'CYCLE-BI-002',
+            name: 'Ciclo Bifásico PR-001 → P-002',
+            type: 'bifasico',
+            species: 'shrimp',
+            startDate: new Date(baseDate.getTime() + 10 * 24 * 60 * 60 * 1000),
+            endDate: new Date(baseDate.getTime() + 100 * 24 * 60 * 60 * 1000),
+            totalDays: 90,
+            tasks: [
+                {
+                    id: 'bi-prep-precria',
+                    name: 'PR-001 - Preparación Precría',
+                    start: new Date(baseDate.getTime() + 10 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 13 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'en_uso',
+                    poolId: 'PR-001',
+                    poolName: 'PR-001 (Precría)',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    notes: 'Preparación piscina de precría',
+                    styles: getTaskStyle('en_uso')
+                },
+                {
+                    id: 'bi-inicio-precria',
+                    name: 'PR-001 - Inicio Precría',
+                    start: new Date(baseDate.getTime() + 13 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 14 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'inicio',
+                    poolId: 'PR-001',
+                    poolName: 'PR-001 (Precría)',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    dependencies: ['bi-prep-precria'],
+                    styles: getTaskStyle('inicio')
+                },
+                {
+                    id: 'bi-siembra-precria',
+                    name: 'PR-001 - Siembra Precría',
+                    start: new Date(baseDate.getTime() + 14 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 16 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'siembra',
+                    poolId: 'PR-001',
+                    poolName: 'PR-001 (Precría)',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    dependencies: ['bi-inicio-precria'],
+                    density: 200,
+                    biomass: 1000,
+                    notes: '1,000,000 postlarvas en precría',
+                    styles: getTaskStyle('siembra')
+                },
+                {
+                    id: 'bi-crecimiento-precria',
+                    name: 'PR-001 - Crecimiento Precría',
+                    start: new Date(baseDate.getTime() + 16 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 55 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'en_uso',
+                    poolId: 'PR-001',
+                    poolName: 'PR-001 (Precría)',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    dependencies: ['bi-siembra-precria'],
+                    biomass: 1800,
+                    notes: 'Desarrollo en precría - 45 días',
+                    styles: getTaskStyle('en_uso')
+                },
+
+                {
+                    id: 'bi-transferencia',
+                    name: 'Transferencia PR-001 → P-002',
+                    start: new Date(baseDate.getTime() + 55 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 57 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'transferencia',
+                    poolId: 'TRANSFER',
+                    poolName: 'Transferencia',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    dependencies: ['bi-crecimiento-precria'],
+                    transferTo: 'P-002',
+                    biomass: 1800,
+                    notes: 'Transferencia a piscina de engorde',
+                    styles: getTaskStyle('transferencia')
+                },
+
+                {
+                    id: 'bi-prep-engorde',
+                    name: 'P-002 - Preparación Engorde',
+                    start: new Date(baseDate.getTime() + 50 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 55 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 100,
+                    phase: 'en_uso',
+                    poolId: 'P-002',
+                    poolName: 'P-002 (Engorde)',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    notes: 'Preparación paralela de piscina de engorde',
+                    styles: getTaskStyle('en_uso')
+                },
+                {
+                    id: 'bi-crecimiento-engorde',
+                    name: 'P-002 - Engorde',
+                    start: new Date(baseDate.getTime() + 57 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 100 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 50,
+                    phase: 'en_uso',
+                    poolId: 'P-002',
+                    poolName: 'P-002 (Engorde)',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    dependencies: ['bi-transferencia', 'bi-prep-engorde'],
+                    biomass: 4200,
+                    waterConditions: {
+                        temperature: 29.0,
+                        oxygen: 5.8,
+                        ph: 8.0,
+                        salinity: 33
+                    },
+                    notes: 'Fase de engorde - 43 días restantes',
+                    styles: getTaskStyle('en_uso')
+                },
+                {
+                    id: 'bi-pesca-engorde',
+                    name: 'P-002 - Cosecha Final',
+                    start: new Date(baseDate.getTime() + 100 * 24 * 60 * 60 * 1000),
+                    end: new Date(baseDate.getTime() + 105 * 24 * 60 * 60 * 1000),
+                    type: 'task',
+                    progress: 0,
+                    phase: 'pesca',
+                    poolId: 'P-002',
+                    poolName: 'P-002 (Engorde)',
+                    cycleId: 'CYCLE-BI-002',
+                    cycleName: 'Ciclo Bifásico PR-001 → P-002',
+                    cycleType: 'bifasico',
+                    dependencies: ['bi-crecimiento-engorde'],
+                    biomass: 5800,
+                    notes: 'Cosecha final estimada: 5,800 kg',
+                    styles: getTaskStyle('pesca')
+                }
+            ]
+        }
+    ];
+}
+
+export function generatePoultryMockData(): CycleData[] {
+    return [];
+}
