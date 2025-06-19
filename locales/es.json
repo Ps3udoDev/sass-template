@@ -85,5 +85,35 @@
       "description": "Solución completa para grandes organizaciones.",
       "price": "$199/mes"
     }
+  },
+  "modules": {
+    "shrimp": {
+      "cycles": {
+        "title": "Ciclos",
+        "description": "Gestión de ciclos de producción",
+        "resume": {
+          "title": "Resumen",
+          "description": "Visualización y análisis de datos del ciclo"
+        }
+      },
+      "pools": {
+        "title": "Piscinas",
+        "description": "Gestión de piscinas de camarones",
+        "pools": {
+          "title": "Piscinas",
+          "description": "Administración y monitoreo de piscinas"
+        }
+      }
+    },
+    "laying-hens": {
+      "cycles": {
+        "title": "Ciclos",
+        "description": "Gestión de ciclos de producción",
+        "resume": {
+          "title": "Resumen",
+          "description": "Visualización y análisis de datos del ciclo"
+        }
+      }
+    }
   }
 }

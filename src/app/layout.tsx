@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import '@mantine/core/styles.css';
 import { geistMono, geistSans } from "@/styles/fonts";
+import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from "@mantine/core";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,11 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" {...mantineHtmlProps}>
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
   );

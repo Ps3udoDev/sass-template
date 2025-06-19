@@ -10,7 +10,7 @@ import { mockTenants } from '@/modules/mockModules';
 
 interface HeaderProps {
     lng: string;
-    tenant?: string; // Opcional: si existe, estamos en modo tenant
+    tenant?: string;
 }
 
 interface TenantData {
@@ -220,7 +220,6 @@ export default function Header({ lng, tenant }: HeaderProps) {
         </nav>
     );
 
-    // Logo dinámico
     const renderLogo = () => {
         if (isTenantMode && tenantData) {
             return (
@@ -232,7 +231,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
                         <img
                             src={tenantData.logo}
                             alt={tenantData.name}
-                            className="h-8 w-auto"
+                            className="h-12 w-auto"
                         />
                     ) : (
                         <div
@@ -252,7 +251,6 @@ export default function Header({ lng, tenant }: HeaderProps) {
             );
         }
 
-        // Logo por defecto para landing page
         return (
             <Link href={`/${lng}`} className="text-xl font-bold text-blue-700">
                 MiSaaS
@@ -265,10 +263,8 @@ export default function Header({ lng, tenant }: HeaderProps) {
             <div className='max-w-7xl mx-auto flex justify-between items-center'>
                 {renderLogo()}
 
-                {/* Desktop Navigation */}
                 {isTenantMode ? renderTenantNavigation() : renderLandingNavigation()}
 
-                {/* Mobile Menu Button */}
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     className="md:hidden p-2 text-gray-600 hover:text-blue-600"
@@ -277,7 +273,6 @@ export default function Header({ lng, tenant }: HeaderProps) {
                 </button>
             </div>
 
-            {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg">
                     <div className="px-6 py-4 space-y-4">

@@ -5,185 +5,369 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import {
-    ChevronLeft,
-    ChevronRight,
-    ChevronDown,
-    ChevronUp,
-    Grid3X3,
-    Home
-} from 'lucide-react';
+    Box,
+    Group,
+    ScrollArea,
+    UnstyledButton,
+    Tooltip,
+    Collapse,
+    Text,
+    ThemeIcon,
+    ActionIcon,
+    Divider,
+    Badge,
+    Stack
+} from '@mantine/core';
+import {
+    IconMenu2,
+    IconHome,
+    IconFish,
+    IconFeather,
+    IconRefresh,
+    IconChartBar,
+    IconRipple,
+    IconChevronRight
+} from '@tabler/icons-react';
 import { getAvailableModules, Module, SubModule } from '@/modules/mockModules';
+import classes from './Sidebar.module.css';
 
 interface SidebarProps {
     lng: string;
     tenant: string;
+    onToggle?: (collapsed: boolean) => void;
 }
 
-export default function Sidebar({ lng, tenant }: SidebarProps) {
-    const [isExpanded, setIsExpanded] = useState(true);
-    const [expandedModules, setExpandedModules] = useState<string[]>([]);
+const IconMap = {
+    Fish: IconFish,
+    Bird: IconFeather,
+    RefreshCw: IconRefresh,
+    BarChart3: IconChartBar,
+    Waves: IconRipple,
+    Home: IconHome,
+};
+
+const getIconComponent = (iconName?: string) => {
+    return IconMap[iconName as keyof typeof IconMap] || IconHome;
+};
+
+const renderIcon = (iconName?: string, size: number = 20) => {
+    const IconComponent = getIconComponent(iconName);
+    return <IconComponent size={size} />;
+};
+
+interface NestedSubModuleProps {
+    subModule: SubModule;
+    lng: string;
+    tenant: string;
+    moduleHref: string;
+    parentSubModuleHref: string;
+}
+
+function NestedSubModule({ subModule, lng, tenant, moduleHref, parentSubModuleHref }: NestedSubModuleProps) {
+    const pathname = usePathname();
+    const t = useTranslations();
+    const [opened, setOpened] = useState(false);
+
+    const hasNestedSubModules = Array.isArray(subModule.subModules) && subModule.subModules.length > 0;
+
+    useEffect(() => {
+        if (hasNestedSubModules && pathname.includes(`/${lng}/${tenant}/${moduleHref}/${subModule.href}`)) {
+            setOpened(true);
+        }
+    }, [pathname, lng, tenant, moduleHref, subModule.href, hasNestedSubModules]);
+
+    const isActive = subModule.href.includes('/')
+        ? pathname.includes(`/${lng}/${tenant}/${moduleHref}/${subModule.href}`)
+        : pathname.includes(`/${lng}/${tenant}/${moduleHref}/${subModule.href}`);
+
+    if (hasNestedSubModules) {
+        return (
+            <Box>
+                <UnstyledButton
+                    onClick={() => setOpened((o) => !o)}
+                    className={classes.subLink}
+                    data-active={isActive || undefined}
+                    w="100%"
+                >
+                    <Group justify="space-between" gap={0} w="100%">
+                        <Group gap="sm">
+                            <ThemeIcon size={24} variant="light" radius="sm">
+                                {renderIcon(subModule.lucideIcon, 14)}
+                            </ThemeIcon>
+                            <Text size="sm" fw={isActive ? 600 : 400}>
+                                {t(subModule.name)}
+                            </Text>
+                        </Group>
+                        <IconChevronRight
+                            className={classes.chevron}
+                            stroke={1.5}
+                            size={12}
+                            style={{
+                                transform: opened ? 'rotate(90deg)' : 'none',
+                                transition: 'transform 150ms ease'
+                            }}
+                        />
+                    </Group>
+                </UnstyledButton>
+
+                <Collapse in={opened}>
+                    <Stack gap={2} ml="lg" mt="xs">
+                        {subModule.subModules!.map((nestedSubModule) => {
+                            const isNestedActive = pathname.includes(`/${lng}/${tenant}/${moduleHref}/${nestedSubModule.href}`);
+                            const nestedHref = `/${lng}/${tenant}/${moduleHref}/${nestedSubModule.href}`;
+
+                            return (
+                                <UnstyledButton
+                                    key={nestedSubModule.id}
+                                    component={Link}
+                                    href={nestedHref}
+                                    className={classes.nestedLink}
+                                    data-active={isNestedActive || undefined}
+                                    w="100%"
+                                >
+                                    <Group gap="xs" ml="md">
+                                        {renderIcon(nestedSubModule.lucideIcon, 18)}
+                                        <Text size="xs" fw={isNestedActive ? 600 : 400}>
+                                            {t(nestedSubModule.name)}
+                                        </Text>
+                                    </Group>
+                                </UnstyledButton>
+                            );
+                        })}
+                    </Stack>
+                </Collapse>
+            </Box>
+        );
+    } else {
+        const subModuleHref = `/${lng}/${tenant}/${moduleHref}/${subModule.href}`;
+        return (
+            <UnstyledButton
+                component={Link}
+                href={subModuleHref}
+                className={classes.subLink}
+                data-active={isActive || undefined}
+                w="100%"
+            >
+                <Group gap="sm">
+                    <ThemeIcon size={24} variant="light" radius="sm">
+                        {renderIcon(subModule.lucideIcon, 14)}
+                    </ThemeIcon>
+                    <Text size="sm" fw={isActive ? 600 : 400}>
+                        {t(subModule.name)}
+                    </Text>
+                </Group>
+            </UnstyledButton>
+        );
+    }
+}
+
+interface LinksGroupProps {
+    icon: React.ComponentType<any>;
+    label: string;
+    href: string;
+    active: boolean;
+    collapsed: boolean;
+    subModules?: SubModule[];
+    lng: string;
+    tenant: string;
+    moduleHref: string;
+    initiallyOpened?: boolean;
+}
+
+function LinksGroup({
+    icon: Icon,
+    label,
+    href,
+    active,
+    collapsed,
+    subModules,
+    lng,
+    tenant,
+    moduleHref,
+    initiallyOpened
+}: LinksGroupProps) {
+    const [opened, setOpened] = useState(initiallyOpened || false);
+    const pathname = usePathname();
+    const t = useTranslations();
+    const hasSubModules = Array.isArray(subModules) && subModules.length > 0;
+
+    useEffect(() => {
+        if (hasSubModules && pathname.includes(moduleHref)) {
+            setOpened(true);
+        }
+    }, [pathname, moduleHref, hasSubModules]);
+
+    if (collapsed) {
+        return (
+            <Tooltip label={label} position="right" withArrow>
+                <UnstyledButton
+                    component={Link}
+                    href={href}
+                    className={classes.mainLinkCollapsed}
+                    data-active={active || undefined}
+                >
+                    <Icon size={22} stroke={1.5} />
+                </UnstyledButton>
+            </Tooltip>
+        );
+    }
+
+    return (
+        <Box>
+            {hasSubModules ? (
+                <UnstyledButton
+                    onClick={() => setOpened((o) => !o)}
+                    className={classes.mainLink}
+                    data-active={active || undefined}
+                    w="100%"
+                >
+                    <Group justify="space-between" gap={0} w="100%">
+                        <Group gap="sm">
+                            <ThemeIcon size={30} variant="light" radius="md">
+                                <Icon size={18} />
+                            </ThemeIcon>
+                            <Text fw={500}>{label}</Text>
+                        </Group>
+                        <IconChevronRight
+                            className={classes.chevron}
+                            stroke={1.5}
+                            size={16}
+                            style={{
+                                transform: opened ? 'rotate(90deg)' : 'none',
+                                transition: 'transform 150ms ease'
+                            }}
+                        />
+                    </Group>
+                </UnstyledButton>
+            ) : (
+                <UnstyledButton
+                    component={Link}
+                    href={href}
+                    className={classes.mainLink}
+                    data-active={active || undefined}
+                    w="100%"
+                >
+                    <Group gap="sm">
+                        <ThemeIcon size={30} variant="light" radius="md">
+                            <Icon size={18} />
+                        </ThemeIcon>
+                        <Text fw={500}>{label}</Text>
+                    </Group>
+                </UnstyledButton>
+            )}
+
+            {hasSubModules && (
+                <Collapse in={opened}>
+                    <Stack gap={2} mt="xs" ml="sm">
+                        {subModules.map((subModule) => (
+                            <NestedSubModule
+                                key={subModule.id}
+                                subModule={subModule}
+                                lng={lng}
+                                tenant={tenant}
+                                moduleHref={moduleHref}
+                                parentSubModuleHref={subModule.href}
+                            />
+                        ))}
+                    </Stack>
+                </Collapse>
+            )}
+        </Box>
+    );
+}
+
+export default function Sidebar({ lng, tenant, onToggle }: SidebarProps) {
+    const [collapsed, setCollapsed] = useState(false);
     const [userModules, setUserModules] = useState<Module[]>([]);
     const pathname = usePathname();
     const t = useTranslations();
 
-    // Cargar módulos del usuario
+    const handleToggle = () => {
+        const newCollapsed = !collapsed;
+        setCollapsed(newCollapsed);
+        onToggle?.(newCollapsed);
+    };
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const session = JSON.parse(localStorage.getItem('session') || '{}');
             const availableModules = getAvailableModules(session.modules || []);
             setUserModules(availableModules);
-
-            // Auto-expandir el módulo activo
-            const currentModule = availableModules.find(module =>
-                pathname.includes(module.href.split('/')[0])
-            );
-            if (currentModule && !expandedModules.includes(currentModule.id)) {
-                setExpandedModules([currentModule.id]);
-            }
         }
-    }, [pathname]);
-
-    const toggleModule = (moduleId: string) => {
-        setExpandedModules(prev =>
-            prev.includes(moduleId)
-                ? prev.filter(id => id !== moduleId)
-                : [...prev, moduleId]
-        );
-    };
+    }, []);
 
     const isActiveRoute = (href: string) => {
         const fullPath = `/${lng}/${tenant}/${href}`;
         return pathname === fullPath || pathname.startsWith(fullPath + '/');
     };
 
-    const isActiveSubModule = (moduleHref: string, subModuleHref: string) => {
-        if (subModuleHref === '') {
-            // Dashboard del módulo
-            return pathname === `/${lng}/${tenant}/${moduleHref}`;
-        }
-        return pathname.includes(`/${lng}/${tenant}/${moduleHref}/${subModuleHref}`);
-    };
-
     return (
-        <div
-            className={`fixed left-0 top-20 h-[calc(100vh-5rem)] bg-white border-r border-gray-200 shadow-lg transition-all duration-300 z-40 ${isExpanded ? 'w-80' : 'w-16'
-                }`}
+        <Box
+            className={classes.navbar}
+            style={{
+                width: collapsed ? 80 : 280,
+                transition: 'width 200ms ease'
+            }}
         >
-            {/* Header del Sidebar */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200">
-                {isExpanded && (
-                    <div className="flex items-center gap-2">
-                        <Grid3X3 size={20} className="text-blue-600" />
-                        <h2 className="font-semibold text-gray-900">Módulos</h2>
-                    </div>
-                )}
-                <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="p-1 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                    {isExpanded ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
-                </button>
-            </div>
+            <Box className={classes.header}>
+                <Group justify="space-between">
+                    {!collapsed && (
+                        <Group gap="xs">
+                            <IconHome size={20} style={{ color: 'var(--mantine-color-blue-6)' }} />
+                            <Text fw={600} c="dark">Módulos</Text>
+                        </Group>
+                    )}
 
-            {/* Enlace al Dashboard Principal */}
-            <div className="p-2">
-                <Link
-                    href={`/${lng}/${tenant}/dashboard`}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${pathname === `/${lng}/${tenant}/dashboard`
-                        ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                        }`}
-                >
-                    <Home size={20} />
-                    {isExpanded && <span className="font-medium">Dashboard Principal</span>}
-                </Link>
-            </div>
+                    <Tooltip
+                        label={collapsed ? "Expandir menú" : "Contraer menú"}
+                        position="right"
+                        disabled={!collapsed}
+                    >
+                        <ActionIcon
+                            variant="subtle"
+                            onClick={handleToggle}
+                            size="lg"
+                        >
+                            <IconMenu2 size={18} />
+                        </ActionIcon>
+                    </Tooltip>
+                </Group>
+            </Box>
 
-            {/* Lista de Módulos */}
-            <div className="flex-1 overflow-y-auto">
-                <div className="p-2 space-y-1">
-                    {userModules.map((module) => {
-                        const isModuleExpanded = expandedModules.includes(module.id);
-                        const isModuleActive = isActiveRoute(module.href);
+            <Divider />
 
-                        return (
-                            <div key={module.id} className="space-y-1">
-                                {/* Módulo Principal */}
-                                <div className="flex items-center">
-                                    <Link
-                                        href={`/${lng}/${tenant}/${module.href}`}
-                                        className={`flex-1 flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ${isModuleActive
-                                            ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600'
-                                            : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-3 flex-1">
-                                            <img
-                                                src={module.icon}
-                                                alt={t(module.name)}
-                                                className="w-5 h-5 object-contain"
-                                            />
-                                            {isExpanded && (
-                                                <span className="font-medium truncate">
-                                                    {t(module.name)}
-                                                </span>
-                                            )}
-                                        </div>
-                                    </Link>
+            <ScrollArea className={classes.links}>
+                <Box className={classes.linksInner}>
+                    <Stack gap="xs">
+                        {userModules.map((module) => (
+                            <LinksGroup
+                                key={module.id}
+                                icon={getIconComponent(module.lucideIcon)}
+                                label={t(module.name)}
+                                href={`/${lng}/${tenant}/${module.href}`}
+                                active={isActiveRoute(module.href)}
+                                collapsed={collapsed}
+                                subModules={module.subModules}
+                                lng={lng}
+                                tenant={tenant}
+                                moduleHref={module.href}
+                                initiallyOpened={isActiveRoute(module.href)}
+                            />
+                        ))}
+                    </Stack>
+                </Box>
+            </ScrollArea>
 
-                                    {isExpanded && (
-                                        <button
-                                            onClick={() => toggleModule(module.id)}
-                                            className="p-1 rounded hover:bg-gray-200 transition-colors"
-                                        >
-                                            {isModuleExpanded ? (
-                                                <ChevronUp size={16} />
-                                            ) : (
-                                                <ChevronDown size={16} />
-                                            )}
-                                        </button>
-                                    )}
-                                </div>
-
-                                {/* Submódulos */}
-                                {isExpanded && isModuleExpanded && (
-                                    <div className="ml-4 space-y-1 border-l-2 border-gray-100 pl-2">
-                                        {module.subModules.map((subModule) => {
-                                            const isSubActive = isActiveSubModule(module.href, subModule.href);
-                                            const subModuleLink = subModule.href
-                                                ? `/${lng}/${tenant}/${module.href}/${subModule.href}`
-                                                : `/${lng}/${tenant}/${module.href}`;
-
-                                            return (
-                                                <Link
-                                                    key={subModule.id}
-                                                    href={subModuleLink}
-                                                    className={`flex items-center gap-3 px-3 py-2 rounded-md transition-all duration-200 text-sm ${isSubActive
-                                                        ? 'bg-blue-50 text-blue-600 font-medium'
-                                                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                                                        }`}
-                                                >
-                                                    <span className="text-base">{subModule.icon}</span>
-                                                    <span className="truncate">{t(subModule.name)}</span>
-                                                </Link>
-                                            );
-                                        })}
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* Footer del Sidebar */}
-            {isExpanded && (
-                <div className="p-4 border-t border-gray-200">
-                    <div className="text-xs text-gray-500 text-center">
-                        <p>{userModules.length} módulos disponibles</p>
-                    </div>
-                </div>
+            {!collapsed && (
+                <Box className={classes.footer}>
+                    <Divider mb="sm" />
+                    <Group justify="center">
+                        <Badge variant="light" size="sm">
+                            {userModules.length} módulos
+                        </Badge>
+                    </Group>
+                </Box>
             )}
-        </div>
+        </Box>
     );
 }

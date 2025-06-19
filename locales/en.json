@@ -85,5 +85,35 @@
       "description": "Complete solution for large organizations.",
       "price": "$199/month"
     }
+  },
+  "modules": {
+    "shrimp": {
+      "cycles": {
+        "title": "Cycles",
+        "description": "Manage shrimp cycles",
+        "resume": {
+          "title": "Resume",
+          "description": "Visualization and analysis of cycle data"
+        }
+      },
+      "pools": {
+        "title": "Pools",
+        "description": "Manage shrimp pools",
+        "pools": {
+          "title": "Pools",
+          "description": "Management and monitoring of shrimp pools"
+        }
+      }
+    },
+    "laying-hens": {
+      "cycles": {
+        "title": "Cycles",
+        "description": "Manage laying hens cycles",
+        "resume": {
+          "title": "Resume",
+          "description": "Visualization and analysis of cycle data"
+        }
+      }
+    }
   }
 }

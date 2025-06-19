@@ -3,6 +3,7 @@
 import { getSession } from "@/lib/session";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Box } from '@mantine/core';
 import Header from "@/components/public/Header";
 import Footer from "@/components/public/Footer";
 import Sidebar from "@/components/common/Sidebar";
@@ -16,7 +17,7 @@ export default function ModulesLayout({ children, params }: ModulesLayoutProps) 
     const router = useRouter();
     const resolvedParams = React.use(params);
     const { lng, tenant } = resolvedParams;
-    const [sidebarExpanded, setSidebarExpanded] = useState(true);
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     useEffect(() => {
         const session = getSession();
@@ -25,22 +26,40 @@ export default function ModulesLayout({ children, params }: ModulesLayoutProps) 
         }
     }, [router, lng]);
 
+    useEffect(() => {
+        const handleSidebarToggle = (event: CustomEvent) => {
+            setSidebarCollapsed(event.detail.collapsed);
+        };
+
+        window.addEventListener('sidebarToggle', handleSidebarToggle as EventListener);
+
+        return () => {
+            window.removeEventListener('sidebarToggle', handleSidebarToggle as EventListener);
+        };
+    }, []);
+
     return (
-        <div className="min-h-screen bg-gray-50">
+        <Box style={{ minHeight: '100vh', backgroundColor: 'var(--mantine-color-gray-0)' }}>
             <Header lng={lng} tenant={tenant} />
-            <Sidebar lng={lng} tenant={tenant} />
 
-            <main className={`transition-all duration-300 pt-20 ${sidebarExpanded ? 'ml-80' : 'ml-16'
-                }`}>
-                <div className="p-6">
+            <Sidebar
+                lng={lng}
+                tenant={tenant}
+                onToggle={(collapsed) => setSidebarCollapsed(collapsed)}
+            />
+
+            <Box
+                component="main"
+                style={{
+                    marginLeft: sidebarCollapsed ? 80 : 280,
+                    transition: 'margin-left 200ms ease',
+                    minHeight: 'calc(100vh - 80px)'
+                }}
+            >
+                <Box p="md">
                     {children}
-                </div>
-            </main>
-
-            <div className={`transition-all duration-300 ${sidebarExpanded ? 'ml-80' : 'ml-16'
-                }`}>
-                <Footer lng={lng} />
-            </div>
-        </div>
+                </Box>
+            </Box>
+        </Box>
     );
 }
