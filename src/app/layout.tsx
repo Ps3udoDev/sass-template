@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import '@mantine/core/styles.css';
-import { geistMono, geistSans } from "@/styles/fonts";
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from "@mantine/core";
+import { Manrope } from "next/font/google";
+import ThemeProvider from "@/components/providers/ThemeProvider";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,14 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="en" {...mantineHtmlProps} className={manrope.variable}>
       <head>
         <ColorSchemeScript />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <MantineProvider>{children}</MantineProvider>
+      <body className="font-sans antialiased">
+        <ThemeProvider>
+          <MantineProvider>{children}</MantineProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

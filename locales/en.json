@@ -1,4 +1,30 @@
 {
+  "header": {
+    "landing": {
+      "about": "About Us",
+      "services": "Services",
+      "testimonials": "Testimonials",
+      "modules": "Modules",
+      "login": "Sign In",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "tenant": {
+      "dashboard": "Dashboard",
+      "marketplace": "Marketplace",
+      "settings": "Settings",
+      "profile": "Profile",
+      "logout": "Sign Out",
+      "account": "Account",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "common": {
+      "menu": "Menu",
+      "close": "Close",
+      "welcome": "Welcome"
+    }
+  },
   "dashboard": {
     "title": "Module Dashboard",
     "modules": {
@@ -11,13 +37,6 @@
         "description": "Manage hens and eggs"
       }
     }
-  },
-  "header": {
-    "home": "Home",
-    "about": "About Us",
-    "products": "Products",
-    "login": "Login",
-    "signup": "Sign Up"
   },
   "footer": {
     "copyright": "All rights reserved",

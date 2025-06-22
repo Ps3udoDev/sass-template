@@ -1,4 +1,4 @@
-import Header from "@/components/public/Header";
+import Header from "@/components/public/header/Header";
 import * as motion from "motion/react-client";
 import type { Variants } from "motion/react";
 import React from "react";

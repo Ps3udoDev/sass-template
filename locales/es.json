@@ -1,4 +1,30 @@
 {
+  "header": {
+    "landing": {
+      "about": "Acerca de Nosotros",
+      "services": "Servicios",
+      "testimonials": "Testimonios",
+      "modules": "Módulos",
+      "login": "Iniciar Sesión",
+      "language": "Idioma",
+      "theme": "Tema"
+    },
+    "tenant": {
+      "dashboard": "Dashboard",
+      "marketplace": "Marketplace",
+      "settings": "Configuración",
+      "profile": "Perfil",
+      "logout": "Cerrar Sesión",
+      "account": "Cuenta",
+      "language": "Idioma",
+      "theme": "Tema"
+    },
+    "common": {
+      "menu": "Menú",
+      "close": "Cerrar",
+      "welcome": "Bienvenido"
+    }
+  },
   "dashboard": {
     "title": "Panel de Módulos",
     "modules": {
@@ -11,13 +37,6 @@
         "description": "Manejo de gallinas y huevos"
       }
     }
-  },
-  "header": {
-    "home": "Inicio",
-    "about": "Acerca de Nosotros",
-    "products": "Productos",
-    "login": "Iniciar Sesión",
-    "signup": "Registrarse"
   },
   "footer": {
     "copyright": "Todos los derechos reservados",
