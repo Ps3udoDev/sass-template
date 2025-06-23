@@ -76,7 +76,7 @@ export default function HeaderLogo({
                         width={90}
                         height={90}
                         color={currentColor}
-                        className="drop-shadow-sm w-8 h-8 lg:w-10 lg:h-10 xl:w-12 xl:h-12"
+                        className="drop-shadow-sm w-10 h-10 lg:w-14 lg:h-14 xl:w-20 xl:h-20"
                     />
                 </div>
                 <span

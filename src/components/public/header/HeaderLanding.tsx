@@ -14,14 +14,14 @@ export default function HeaderLanding({
     const t = useTranslations();
 
     return (
-        <nav className="flex items-center space-x-2 lg:space-x-4 xl:space-x-6">
+        <nav className="flex items-center space-x-2 lg:space-x-4 xl:space-x-6 ">
             {navigationItems
                 .filter(item => item.enabled)
                 .map((item) => (
                     <button
                         key={item.key}
                         onClick={() => onScrollToSection(item.key)}
-                        className="text-secondary hover:text-primary transition-colors duration-200 font-medium text-sm lg:text-base whitespace-nowrap"
+                        className="text-secondary hover:text-primary transition-colors duration-200 font-medium text-sm lg:text-base whitespace-nowrap hover:cursor-pointer"
                     >
                         {t(item.label)}
                     </button>

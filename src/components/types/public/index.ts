@@ -1,1 +1,6 @@
 export * from './Header.types'
+export * from './Testimonials.types'
+export * from './AboutSection.types'
+export * from './HeroSection.types'
+export * from './ServicesSection.types'
+export * from './ModulesSection.types'

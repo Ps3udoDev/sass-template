@@ -1,9 +1,14 @@
 import Header from "@/components/public/header/Header";
-import * as motion from "motion/react-client";
-import type { Variants } from "motion/react";
-import React from "react";
 import Footer from "@/components/public/Footer";
+import * as motion from "motion/react-client";
+import React from "react";
 import { useTranslations } from "next-intl";
+import HeroSection from "@/components/public/sections/hero/HeroSection";
+import AboutSection from "@/components/public/sections/about/AboutSection";
+import ServicesSection from "@/components/public/sections/services/ServicesSection";
+import ModulesSection from "@/components/public/sections/modules/ModulesSection";
+import TestimonialsSection from "@/components/public/sections/testimonials/TestimonialsSection";
+
 
 interface HomeProps {
     params: Promise<{ lng: string }>;
@@ -13,351 +18,183 @@ export default function Home({ params }: HomeProps) {
     const resolvedParams = React.use(params);
     const { lng } = resolvedParams;
     const t = useTranslations();
+
     return (
         <>
+            {/* Header */}
             <Header lng={lng} />
 
-            <section id="home" className="min-h-screen flex items-center justify-center pt-20">
-                <div className="max-w-5xl mx-auto px-6 py-16 text-center">
-                    <motion.h1
-                        className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                        initial={{ opacity: 0, y: 100 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                    >
-                        {t('home.title')}
-                    </motion.h1>
+            {/* Hero Section */}
+            <HeroSection
+                lng={lng}
+                backgroundPattern="mesh"
+                showLogo={true}
+                variant="default"
+            />
 
-                    <motion.p
-                        className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto"
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                        {t('home.description')}
-                    </motion.p>
+            <div id="about">
+                <AboutSection
+                    lng={lng}
+                    variant="centered"
+                    backgroundStyle="none"
+                    showStats={true}
+                />
+            </div>
 
-                    <motion.button
-                        className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        {t('home.cta')}
-                    </motion.button>
+            <div id="services">
+                <ServicesSection
+                    lng={lng}
+                    columns={3}
+                    backgroundStyle="none"
+                    showFeatures={true}
+                />
+            </div>
+
+
+
+
+            <div id="testimonials">
+                <TestimonialsSection
+                    lng={lng}
+                    variant="featured"
+                    showFilters={false}
+                    filterByCategory={false}
+                />
+            </div>
+            <div id="modules">
+                <ModulesSection
+                    lng={lng}
+                    showCTA={true}
+                    backgroundStyle="none"
+                />
+            </div>
+
+            <section className="py-16 lg:py-24  text-foreground dark:text-foreground-dark relative overflow-hidden">
+                {/* Background decorations */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-32 -translate-y-32" />
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-x-48 translate-y-48" />
                 </div>
-            </section>
 
-            <section className="py-20 bg-gray-50">
-                <div className="max-w-5xl mx-auto px-6">
-                    <motion.h2
-                        className="text-4xl font-bold text-center mb-16"
-                        initial="offscreen"
-                        whileInView="onscreen"
-                        viewport={{ once: true, amount: 0.8 }}
-                        variants={titleVariants}
-                    >
-                        {t('home.benefits')}
-                    </motion.h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {benefits.map((benefit, index) => (
-                            <BenefitCard
-                                key={index}
-                                benefit={benefit}
-                                index={index}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="about" className="py-20">
-                <div className="max-w-5xl mx-auto px-6">
+                <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                     <motion.div
-                        className="text-center"
-                        initial="offscreen"
-                        whileInView="onscreen"
-                        viewport={{ once: true, amount: 0.6 }}
-                        variants={sectionVariants}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true, amount: 0.3 }}
                     >
-                        <h2 className="text-4xl font-bold mb-8">{t('home.about')}</h2>
-                        <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
-                            {t('home.aboutDescription')}
-                        </p>
+                        {/* Badge */}
+                        <motion.div
+                            className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            viewport={{ once: true }}
+                        >
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                            <span className="text-sm font-medium text-white">
+                                {t('dashboard.landing.finalCta.badge', { default: 'Únete a SyncLiv' })}
+                            </span>
+                        </motion.div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-                            {stats.map((stat, index) => (
-                                <StatCard key={index} stat={stat} index={index} />
-                            ))}
-                        </div>
+                        {/* Title */}
+                        <motion.h2
+                            className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-tight"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            viewport={{ once: true }}
+                        >
+                            {t('dashboard.landing.finalCta.title', {
+                                default: 'Comienza a transformar tu producción hoy'
+                            })}
+                        </motion.h2>
+
+                        {/* Description */}
+                        <motion.p
+                            className="text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-white/90"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            viewport={{ once: true }}
+                        >
+                            {t('dashboard.landing.finalCta.description', {
+                                default: 'Agenda una demo gratuita y descubre cómo podemos ayudarte a crecer sin complicaciones.'
+                            })}
+                        </motion.p>
+
+                        {/* CTA Buttons */}
+                        <motion.div
+                            className="flex flex-col sm:flex-row gap-4 justify-center"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.5 }}
+                            viewport={{ once: true }}
+                        >
+                            {/* Primary CTA */}
+                            <motion.button
+                                className="bg-white text-primary px-8 py-4 rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-gray-50"
+                                whileHover={{
+                                    scale: 1.05,
+                                    boxShadow: "0 20px 25px -5px rgb(255 255 255 / 0.3)"
+                                }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                {t('dashboard.landing.finalCta.button', {
+                                    default: 'Solicita tu demo'
+                                })}
+                            </motion.button>
+
+                            {/* Secondary CTA */}
+                            <motion.button
+                                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold text-lg border border-white/30 transition-all duration-300"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                {t('dashboard.landing.finalCta.secondary', {
+                                    default: 'Hablar con ventas'
+                                })}
+                            </motion.button>
+                        </motion.div>
+
+                        {/* Trust indicators */}
+                        <motion.div
+                            className="mt-12 pt-8 border-t border-white/20"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
+                            viewport={{ once: true }}
+                        >
+                            <p className="text-white/80 text-sm mb-4">
+                                {t('dashboard.landing.finalCta.guarantee', {
+                                    default: 'Demo gratuita • Sin compromisos • Configuración en 24 horas'
+                                })}
+                            </p>
+
+                            {/* Social proof */}
+                            <div className="flex items-center justify-center gap-8 text-white/60">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-2xl font-bold text-white">15+</span>
+                                    <span className="text-sm">Empresas</span>
+                                </div>
+                                <div className="w-px h-6 bg-white/20" />
+                                <div className="flex items-center gap-2">
+                                    <span className="text-2xl font-bold text-white">2.5K+</span>
+                                    <span className="text-sm">Ciclos</span>
+                                </div>
+                                <div className="w-px h-6 bg-white/20" />
+                                <div className="flex items-center gap-2">
+                                    <span className="text-2xl font-bold text-white">18%</span>
+                                    <span className="text-sm">Ahorro</span>
+                                </div>
+                            </div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
 
-            <section id="products" className="py-20 bg-blue-50">
-                <div className="max-w-5xl mx-auto px-6">
-                    <motion.h2
-                        className="text-4xl font-bold text-center mb-16"
-                        initial="offscreen"
-                        whileInView="onscreen"
-                        viewport={{ once: true, amount: 0.8 }}
-                        variants={titleVariants}
-                    >
-                        {t('home.products')}
-                    </motion.h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {products.map((product, index) => (
-                            <ProductCard
-                                key={index}
-                                product={product}
-                                index={index}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                <div className="max-w-5xl mx-auto px-6 text-center">
-                    <motion.div
-                        initial="offscreen"
-                        whileInView="onscreen"
-                        viewport={{ once: true, amount: 0.8 }}
-                        variants={ctaVariants}
-                    >
-                        <h2 className="text-4xl font-bold mb-8">{t('home.ctaTitle')}</h2>
-                        <p className="text-xl mb-8 max-w-2xl mx-auto">
-                            {t('home.ctaDescription')}
-                        </p>
-                        <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                            {t('home.ctaButton')}
-                        </button>
-                    </motion.div>
-                </div>
-            </section>
-
+            {/* Footer */}
             <Footer lng={lng} />
         </>
     );
 }
-
-interface BenefitCardProps {
-    benefit: { title: string; description: string; icon: string };
-    index: number;
-}
-
-function BenefitCard({ benefit, index }: BenefitCardProps) {
-    const t = useTranslations();
-    return (
-        <motion.div
-            className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={cardVariants}
-            transition={{ delay: index * 0.2 }}
-            whileHover={{ y: -5 }}
-        >
-            <div className="text-4xl mb-4">{benefit.icon}</div>
-            <h3 className="text-2xl font-semibold mb-4">{t(benefit.title)}</h3>
-            <p className="text-gray-600">{t(benefit.description)}</p>
-        </motion.div>
-    );
-}
-
-interface StatCardProps {
-    stat: { number: string; label: string };
-    index: number;
-}
-
-function StatCard({ stat, index }: StatCardProps) {
-    const t = useTranslations();
-    return (
-        <motion.div
-            className="text-center"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={statVariants}
-            transition={{ delay: index * 0.2 }}
-        >
-            <div className="text-4xl font-bold text-blue-600 mb-2">{stat.number}</div>
-            <div className="text-gray-600">{t(stat.label)}</div>
-        </motion.div>
-    );
-}
-
-interface ProductCardProps {
-    product: { name: string; description: string; price: string };
-    index: number;
-}
-
-function ProductCard({ product, index }: ProductCardProps) {
-    const t = useTranslations();
-    return (
-        <motion.div
-            className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={productVariants}
-            transition={{ delay: index * 0.1 }}
-            whileHover={{ scale: 1.02 }}
-        >
-            <h3 className="text-xl font-semibold mb-4">{t(product.name)}</h3>
-            <p className="text-gray-600 mb-4">{t(product.description)}</p>
-            <div className="text-2xl font-bold text-blue-600 mb-4">{t(product.price)}</div>
-            <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                {t('home.moreInfo')}
-            </button>
-        </motion.div>
-    );
-}
-
-const titleVariants: Variants = {
-    offscreen: {
-        y: 50,
-        opacity: 0,
-    },
-    onscreen: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            type: "spring",
-            bounce: 0.4,
-            duration: 0.8,
-        },
-    },
-};
-
-const cardVariants: Variants = {
-    offscreen: {
-        y: 100,
-        opacity: 0,
-    },
-    onscreen: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            type: "spring",
-            bounce: 0.4,
-            duration: 0.8,
-        },
-    },
-};
-
-const sectionVariants: Variants = {
-    offscreen: {
-        y: 50,
-        opacity: 0,
-    },
-    onscreen: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            duration: 0.8,
-            staggerChildren: 0.2,
-        },
-    },
-};
-
-const statVariants: Variants = {
-    offscreen: {
-        scale: 0.8,
-        opacity: 0,
-    },
-    onscreen: {
-        scale: 1,
-        opacity: 1,
-        transition: {
-            type: "spring",
-            bounce: 0.6,
-            duration: 0.8,
-        },
-    },
-};
-
-const productVariants: Variants = {
-    offscreen: {
-        y: 80,
-        opacity: 0,
-        rotate: -10,
-    },
-    onscreen: {
-        y: 0,
-        opacity: 1,
-        rotate: 0,
-        transition: {
-            type: "spring",
-            bounce: 0.4,
-            duration: 0.8,
-        },
-    },
-};
-
-const ctaVariants: Variants = {
-    offscreen: {
-        scale: 0.8,
-        opacity: 0,
-    },
-    onscreen: {
-        scale: 1,
-        opacity: 1,
-        transition: {
-            type: "spring",
-            bounce: 0.4,
-            duration: 0.8,
-        },
-    },
-};
-
-const benefits = [
-    {
-        title: 'home.benefit1.title',
-        description: 'home.benefit1.description',
-        icon: "🚀",
-    },
-    {
-        title: 'home.benefit2.title',
-        description: 'home.benefit2.description',
-        icon: "🔒",
-    },
-    {
-        title: 'home.benefit3.title',
-        description: 'home.benefit3.description',
-        icon: "📈",
-    },
-    {
-        title: 'home.benefit4.title',
-        description: 'home.benefit4.description',
-        icon: "🛠️",
-    },
-];
-
-const stats = [
-    { number: 'home.stat1.number', label: 'home.stat1.label' },
-    { number: 'home.stat2.number', label: 'home.stat2.label' },
-    { number: 'home.stat3.number', label: 'home.stat3.label' },
-];
-
-const products = [
-    {
-        name: 'home.product1.name',
-        description: 'home.product1.description',
-        price: 'home.product1.price',
-    },
-    {
-        name: 'home.product2.name',
-        description: 'home.product2.description',
-        price: 'home.product2.price',
-    },
-    {
-        name: 'home.product3.name',
-        description: 'home.product3.description',
-        price: 'home.product3.price',
-    },
-];
