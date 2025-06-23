@@ -1,7 +1,7 @@
 'use client';
 
 import Footer from "@/components/public/Footer";
-import Header from "@/components/public/Header";
+import Header from "@/components/public/header/Header";
 import { getSession } from "@/lib/session";
 import { useRouter } from "next/navigation"
 import React, { useEffect } from "react";

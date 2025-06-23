@@ -1,23 +1,170 @@
 {
+  "header": {
+    "landing": {
+      "about": "Acerca de Nosotros",
+      "services": "Servicios",
+      "testimonials": "Testimonios",
+      "modules": "Módulos",
+      "login": "Iniciar Sesión",
+      "language": "Idioma",
+      "theme": "Tema"
+    },
+    "tenant": {
+      "dashboard": "Dashboard",
+      "marketplace": "Marketplace",
+      "settings": "Configuración",
+      "profile": "Perfil",
+      "logout": "Cerrar Sesión",
+      "account": "Cuenta",
+      "language": "Idioma",
+      "theme": "Tema"
+    },
+    "common": {
+      "menu": "Menú",
+      "close": "Cerrar",
+      "welcome": "Bienvenido"
+    }
+  },
   "dashboard": {
-    "title": "Panel de Módulos",
-    "modules": {
-      "shrimp": {
-        "name": "Camaronero",
-        "description": "Manejo de piscinas y ciclos de camarón"
+    "landing": {
+     "heroSection": {
+        "badge": "Plataforma SaaS Líder",
+        "title": "La plataforma inteligente para gestión productiva de alimentos",
+        "subtitle": "Optimiza tus operaciones con módulos personalizables para camaroneras, ganadería, tilapia y más.",
+        "description": "Descubre cómo automatizar tu producción, visualizar datos en tiempo real y reducir costos desde el primer día.",
+        "cta": "Solicita tu demo personalizada",
+        "watchDemo": "Ver Demo",
+        "trustedBy": "Confiado por",
+        "features": {
+          "automation": "Automatización completa",
+          "monitoring": "Monitoreo en tiempo real",
+          "optimization": "Optimización de costos"
+        }
       },
-      "laying-hens": {
-        "name": "Gallinas Ponedoras",
-        "description": "Manejo de gallinas y huevos"
+    "aboutSection": {
+        "badge": "Nuestra Misión",
+        "title": "Construimos herramientas para quienes alimentan al mundo",
+        "description": "Somos una plataforma SaaS diseñada para productores de alimentos que buscan eficiencia, control y escalabilidad. Desde pequeñas granjas hasta operaciones industriales, nuestra tecnología se adapta a cada proceso productivo.",
+        "point1": "Tecnología adaptable desde pequeñas granjas hasta operaciones industriales",
+        "point2": "Facilita monitoreo, toma de decisiones y colaboración en equipo",
+        "statsNote": "Datos actualizados al último trimestre",
+        "stats": {
+          "stat1": {
+            "number": "15+",
+            "label": "Empresas activas"
+          },
+          "stat2": {
+            "number": "2,500+",
+            "label": "Ciclos completados"
+          },
+          "stat3": {
+            "number": "18%",
+            "label": "Ahorro operacional"
+          }
+        }
+      },
+      "servicesSection": {
+        "badge": "Nuestros Servicios",
+        "title": "Soluciones integradas para cada etapa de tu producción",
+        "subtitle": "Herramientas potentes y flexibles que se adaptan a cada etapa de tu proceso productivo",
+        "services": {
+          "inventory": {
+            "title": "Gestión de Inventario",
+            "description": "Control total sobre suministros, alimentos y recursos."
+          },
+          "cycles": {
+            "title": "Automatización de Ciclos",
+            "description": "Monitorea y planifica tus procesos con precisión."
+          },
+          "forecasting": {
+            "title": "Pronóstico de Ganancias",
+            "description": "Visualiza ingresos potenciales y puntos críticos."
+          },
+          "users": {
+            "title": "Gestión de Usuarios y Roles",
+            "description": "Permisos seguros adaptados a cada equipo."
+          },
+          "reports": {
+            "title": "Reportes Dinámicos",
+            "description": "Exporta datos a PDF, Excel o CSV en segundos."
+          },
+          "notifications": {
+            "title": "Notificaciones Multicanal",
+            "description": "Mantente informado con alertas y emails."
+          }
+        },
+        "cta": {
+          "title": "¿Necesitas una solución personalizada?",
+          "description": "Nuestro equipo puede adaptar cualquier funcionalidad a tus necesidades específicas",
+          "button": "Hablar con un experto"
+        }
+      },
+     "modulesSection": {
+        "badge": "Módulos Especializados",
+        "title": "Módulos que se adaptan a tu operación",
+        "description": "Desde el estanque hasta el corral, elige los módulos que necesitas y agrégalos en cualquier momento.",
+        "modules": {
+          "shrimp": {
+            "title": "Módulo de Camarones",
+            "description": "Gestiona piscinas, ciclos, alimentación y seguimiento sanitario completo para maximizar tu producción acuícola."
+          },
+          "cattle": {
+            "title": "Módulo Ganadero",
+            "description": "Rastrea rebaños, reproducción, historial de peso y control reproductivo para optimizar tu ganado."
+          },
+          "tilapia": {
+            "title": "Módulo de Tilapia",
+            "description": "Administra jaulas flotantes, alimentación y cosecha para una piscicultura eficiente."
+          },
+          "poultry": {
+            "title": "Módulo Avícola",
+            "description": "Controla ponedoras, pollos de engorde, inventario y producción diaria."
+          }
+        },
+        "cta": {
+          "title": "¿No encuentras el módulo que necesitas?",
+          "description": "Trabajamos contigo para desarrollar módulos personalizados que se adapten perfectamente a tu operación específica",
+          "button": "Solicitar módulo personalizado",
+          "demo": "Ver todos los módulos"
+        }
+      },
+
+     "finalCta": {
+        "badge": "Únete a SyncLiv",
+        "title": "Comienza a transformar tu producción hoy",
+        "description": "Agenda una demo gratuita y descubre cómo podemos ayudarte a crecer sin complicaciones.",
+        "button": "Solicita tu demo",
+        "secondary": "Hablar con ventas",
+        "guarantee": "Demo gratuita • Sin compromisos • Configuración en 24 horas"
       }
     }
   },
-  "header": {
-    "home": "Inicio",
-    "about": "Acerca de Nosotros",
-    "products": "Productos",
-    "login": "Iniciar Sesión",
-    "signup": "Registrarse"
+  "testimonials": {
+    "title": "Historias reales, resultados reales",
+    "subtitle": "Descubre cómo nuestros clientes han transformado sus operaciones con SyncLiv",
+    "stats": {
+      "total": "Testimonios",
+      "avgRating": "Calificación promedio",
+      "verified": "Verificados"
+    },
+    "filters": {
+      "all": "Todos",
+      "shrimp": "Camaroneras",
+      "cattle": "Ganadería",
+      "tilapia": "Tilapia",
+      "poultry": "Avicultura",
+      "general": "General"
+    },
+    "noResults": {
+      "title": "No se encontraron testimonios",
+      "description": "Intenta con un filtro diferente para ver más testimonios",
+      "reset": "Mostrar todos"
+    },
+    "cta": {
+      "title": "¿Listo para ser el próximo caso de éxito?",
+      "description": "Únete a cientos de productores que ya confían en SyncLiv",
+      "button": "Solicita tu demo"
+    }
   },
   "footer": {
     "copyright": "Todos los derechos reservados",

@@ -3,6 +3,15 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+    webpack(config) {
+        config.module.rules.push({
+            test: /\.svg$/i,
+            issuer: /\.[jt]sx?$/,
+            use: ['@svgr/webpack'],
+        });
+        return config;
+    },
+};
 
 export default withNextIntl(nextConfig);

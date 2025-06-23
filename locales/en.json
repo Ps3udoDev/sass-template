@@ -1,23 +1,170 @@
 {
+  "header": {
+    "landing": {
+      "about": "About Us",
+      "services": "Services",
+      "testimonials": "Testimonials",
+      "modules": "Modules",
+      "login": "Sign In",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "tenant": {
+      "dashboard": "Dashboard",
+      "marketplace": "Marketplace",
+      "settings": "Settings",
+      "profile": "Profile",
+      "logout": "Sign Out",
+      "account": "Account",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "common": {
+      "menu": "Menu",
+      "close": "Close",
+      "welcome": "Welcome"
+    }
+  },
   "dashboard": {
-    "title": "Module Dashboard",
-    "modules": {
-      "shrimp": {
-        "name": "Shrimp Farming",
-        "description": "Manage ponds and shrimp cycles"
+    "landing": {
+     "heroSection": {
+        "badge": "Leading SaaS Platform",
+        "title": "The intelligent platform for productive food management",
+        "subtitle": "Optimize your operations with customizable modules for shrimp farms, livestock, tilapia, and more.",
+        "description": "Discover how to automate your production, visualize data in real time, and reduce costs from day one.",
+        "cta": "Request a personalized demo",
+        "watchDemo": "Watch Demo",
+        "trustedBy": "Trusted by",
+        "features": {
+          "automation": "Complete automation",
+          "monitoring": "Real-time monitoring",
+          "optimization": "Cost optimization"
+        }
       },
-      "laying-hens": {
-        "name": "Laying Hens",
-        "description": "Manage hens and eggs"
+    "aboutSection": {
+        "badge": "Our Mission",
+        "title": "We build tools for those who feed the world",
+        "description": "We are a SaaS platform designed for food producers who seek efficiency, control, and scalability. From small farms to industrial operations, our technology adapts to every productive process.",
+        "point1": "Adaptable technology from small farms to industrial operations",
+        "point2": "Facilitates monitoring, decision-making, and team collaboration",
+        "statsNote": "Data updated to last quarter",
+        "stats": {
+          "stat1": {
+            "number": "15+",
+            "label": "Active companies"
+          },
+          "stat2": {
+            "number": "2,500+",
+            "label": "Completed cycles"
+          },
+          "stat3": {
+            "number": "18%",
+            "label": "Operational savings"
+          }
+        }
+      },
+      "servicesSection": {
+        "badge": "Our Services",
+        "title": "Integrated solutions for every stage of your production",
+        "subtitle": "Powerful and flexible tools that adapt to every stage of your production process",
+        "services": {
+          "inventory": {
+            "title": "Inventory Management",
+            "description": "Full control over supplies, feed, and resources."
+          },
+          "cycles": {
+            "title": "Cycle Automation",
+            "description": "Monitor and plan your processes with precision."
+          },
+          "forecasting": {
+            "title": "Profit Forecasting",
+            "description": "Visualize potential earnings and critical points."
+          },
+          "users": {
+            "title": "User & Role Management",
+            "description": "Secure permissions tailored to each team."
+          },
+          "reports": {
+            "title": "Dynamic Reports",
+            "description": "Export data to PDF, Excel, or CSV in seconds."
+          },
+          "notifications": {
+            "title": "Multi-Channel Notifications",
+            "description": "Stay informed with in-app alerts and emails."
+          }
+        },
+        "cta": {
+          "title": "Need a custom solution?",
+          "description": "Our team can adapt any functionality to your specific needs",
+          "button": "Talk to an expert"
+        }
+      },
+      "modulesSection": {
+        "badge": "Specialized Modules",
+        "title": "Modules that adapt to your operation",
+        "description": "From the pond to the corral, choose the modules you need and add them anytime.",
+        "modules": {
+          "shrimp": {
+            "title": "Shrimp Module",
+            "description": "Manage pools, cycles, feeding, and complete sanitary tracking to maximize your aquaculture production."
+          },
+          "cattle": {
+            "title": "Cattle Module",
+            "description": "Track herds, breeding, weight history, and reproductive control to optimize your livestock."
+          },
+          "tilapia": {
+            "title": "Tilapia Module",
+            "description": "Manage floating cages, feeding, and harvest for efficient fish farming."
+          },
+          "poultry": {
+            "title": "Poultry Module",
+            "description": "Control layers, broilers, inventory, and daily production."
+          }
+        },
+        "cta": {
+          "title": "Can't find the module you need?",
+          "description": "We work with you to develop custom modules that perfectly adapt to your specific operation",
+          "button": "Request custom module",
+          "demo": "View all modules"
+        }
+      },
+
+      "finalCta": {
+        "badge": "Join SyncLiv",
+        "title": "Start transforming your production today",
+        "description": "Schedule a free demo and discover how we can help you grow without complications.",
+        "button": "Request your demo",
+        "secondary": "Talk to sales",
+        "guarantee": "Free demo • No commitments • 24-hour setup"
       }
     }
   },
-  "header": {
-    "home": "Home",
-    "about": "About Us",
-    "products": "Products",
-    "login": "Login",
-    "signup": "Sign Up"
+  "testimonials": {
+    "title": "Real stories, real results",
+    "subtitle": "Discover how our clients have transformed their operations with SyncLiv",
+    "stats": {
+      "total": "Testimonials",
+      "avgRating": "Average rating",
+      "verified": "Verified"
+    },
+    "filters": {
+      "all": "All",
+      "shrimp": "Shrimp Farms",
+      "cattle": "Cattle",
+      "tilapia": "Tilapia",
+      "poultry": "Poultry",
+      "general": "General"
+    },
+    "noResults": {
+      "title": "No testimonials found",
+      "description": "Try a different filter to see more testimonials",
+      "reset": "Show all"
+    },
+    "cta": {
+      "title": "Ready to be the next success story?",
+      "description": "Join hundreds of producers who already trust SyncLiv",
+      "button": "Request your demo"
+    }
   },
   "footer": {
     "copyright": "All rights reserved",

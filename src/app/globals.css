@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-sans: "Manrope", sans-serif;
 
-:root {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #ffffff;
+  --color-foreground: #1f2933;
+  --color-secondary-text: #6b7280;
+  --color-accent: #a9c6cf;
+  --color-soft-bg: #f7fafc;
+
+  --color-background-dark: #0f172a;
+  --color-foreground-dark: #f1f5f9;
+  --color-secondary-text-dark: #94a3b8;
+  --color-accent-dark: #4d869c;
+  --color-soft-bg-dark: #1e293b;
+
+  --color-primary: #00747c;
+  --color-primary-dark: #00adb5;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: dark;
+    background-color: var(--color-background-dark);
+    color: var(--color-foreground-dark);
   }
 }
 
 body {
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
+.dark body {
+  background-color: var(--color-background-dark);
+  color: var(--color-foreground-dark);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.dark .bg-primary {
+  background-color: var(--color-primary-dark);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.dark .text-primary {
+  color: var(--color-primary-dark);
+}
+
+.text-secondary {
+  color: var(--color-secondary-text);
+}
+
+.dark .text-secondary {
+  color: var(--color-secondary-text-dark);
+}
+
+.bg-soft {
+  background-color: var(--color-soft-bg);
+}
+
+.dark .bg-soft {
+  background-color: var(--color-soft-bg-dark);
+}
+
+.text-foreground {
+  color: var(--color-foreground);
+}
+
+.dark .text-foreground {
+  color: var(--color-foreground-dark);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.dark .text-accent {
+  color: var(--color-accent-dark);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.dark .bg-accent {
+  background-color: var(--color-accent-dark);
+}
+
+.hover\:bg-primary\/90:hover {
+  background-color: rgb(from var(--color-primary) r g b / 0.9);
+}
+
+.dark .hover\:bg-primary\/90:hover {
+  background-color: rgb(from var(--color-primary-dark) r g b / 0.9);
+}
+
+.transition-theme {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.focus-visible\:ring-primary:focus-visible {
+  --tw-ring-color: var(--color-primary);
+}
+
+.dark .focus-visible\:ring-primary:focus-visible {
+  --tw-ring-color: var(--color-primary-dark);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-soft-bg);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--color-soft-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-accent-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
 }
