@@ -6,6 +6,7 @@ import { ArrowRight, Play, CheckCircle } from 'lucide-react';
 import { HeroSectionProps } from '@/components/types/public/HeroSection.types';
 import SyncLivLogo from '@/components/icons/SyncLivLogo';
 import AnimatedBackground from './AnimatedBackground';
+import Image from 'next/image';
 
 export default function HeroSection({
     lng,
@@ -95,11 +96,13 @@ export default function HeroSection({
                                     }}
                                 >
                                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl scale-150 animate-pulse" />
-                                    <SyncLivLogo
+
+                                    <Image
+                                        alt="Quanta-Logo"
+                                        src='/logos/Quanta.png'
                                         width={280}
                                         height={280}
-                                        color="var(--color-primary)"
-                                        className="relative z-10 drop-shadow-2xl"
+                                        className='rounded-full object-cover'
                                     />
                                 </motion.div>
 

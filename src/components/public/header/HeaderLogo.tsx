@@ -72,19 +72,14 @@ export default function HeaderLogo({
                 className="flex items-center gap-1 lg:gap-2 hover:opacity-80 transition-all duration-200 group"
             >
                 <div className="transition-transform group-hover:scale-105">
-                    <SyncLivLogo
-                        width={90}
-                        height={90}
-                        color={currentColor}
-                        className="drop-shadow-sm w-10 h-10 lg:w-14 lg:h-14 xl:w-20 xl:h-20"
+                    <Image
+                        alt="Quanta-Logo"
+                        src='/logos/Quanta.png'
+                        width={64}
+                        height={64}
                     />
                 </div>
-                <span
-                    className="text-lg lg:text-xl xl:text-3xl font-bold hidden sm:block transition-colors duration-200"
-                    style={{ color: currentColor }}
-                >
-                    SyncLiv
-                </span>
+
             </Link>
         );
     };
