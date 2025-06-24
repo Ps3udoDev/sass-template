@@ -235,6 +235,7 @@
   },
   "modules": {
     "shrimp": {
+      "name": "Shrimp",
       "cycles": {
         "title": "Cycles",
         "description": "Manage shrimp cycles",
@@ -253,6 +254,7 @@
       }
     },
     "laying-hens": {
+      "name": "layin-hens",
       "cycles": {
         "title": "Cycles",
         "description": "Manage laying hens cycles",

@@ -26,7 +26,8 @@ import {
     IconRefresh,
     IconChartBar,
     IconRipple,
-    IconChevronRight
+    IconChevronRight,
+    IconArrowLeft
 } from '@tabler/icons-react';
 import { getAvailableModules, Module, SubModule } from '@/modules/mockModules';
 import classes from './Sidebar.module.css';
@@ -279,6 +280,7 @@ function LinksGroup({
 export default function Sidebar({ lng, tenant, onToggle }: SidebarProps) {
     const [collapsed, setCollapsed] = useState(false);
     const [userModules, setUserModules] = useState<Module[]>([]);
+    const [currentModule, setCurrentModule] = useState<Module | null>(null);
     const pathname = usePathname();
     const t = useTranslations();
 
@@ -288,18 +290,54 @@ export default function Sidebar({ lng, tenant, onToggle }: SidebarProps) {
         onToggle?.(newCollapsed);
     };
 
+    const handleBackToDashboard = () => {
+        window.location.href = `/${lng}/${tenant}/dashboard`;
+    };
+
+    // Función para obtener el módulo actual basado en la URL
+    const getCurrentModuleFromURL = () => {
+        // URLs como: /es/shrimp-wave/aquaculture/shrimp
+        // Necesitamos obtener "aquaculture/shrimp"
+        const pathSegments = pathname.split('/');
+
+        if (pathSegments.length >= 5) {
+            const moduleHref = `${pathSegments[3]}/${pathSegments[4]}`;
+            return moduleHref;
+        }
+
+        return null;
+    };
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const session = JSON.parse(localStorage.getItem('session') || '{}');
             const availableModules = getAvailableModules(session.modules || []);
             setUserModules(availableModules);
+
+            // Filtrar el módulo actual basado en la URL
+            const currentModuleHref = getCurrentModuleFromURL();
+
+            if (currentModuleHref) {
+                const foundModule = availableModules.find(module => module.href === currentModuleHref);
+                setCurrentModule(foundModule || null);
+            } else {
+                setCurrentModule(null);
+            }
         }
-    }, []);
+    }, [pathname]);
 
     const isActiveRoute = (href: string) => {
         const fullPath = `/${lng}/${tenant}/${href}`;
         return pathname === fullPath || pathname.startsWith(fullPath + '/');
     };
+
+    // Solo mostrar el módulo actual, no todos los módulos
+    const modulesToShow = currentModule ? [currentModule] : [];
+
+    // No mostrar sidebar si estamos en dashboard
+    if (!currentModule) {
+        return null;
+    }
 
     return (
         <Box
@@ -311,26 +349,49 @@ export default function Sidebar({ lng, tenant, onToggle }: SidebarProps) {
         >
             <Box className={classes.header}>
                 <Group justify="space-between">
-                    {!collapsed && (
+                    {!collapsed ? (
                         <Group gap="xs">
-                            <IconHome size={20} style={{ color: 'var(--mantine-color-blue-6)' }} />
-                            <Text fw={600} c="dark">Módulos</Text>
+                            <ThemeIcon size={24} variant="light" radius="sm">
+                                {renderIcon(currentModule.lucideIcon, 16)}
+                            </ThemeIcon>
+                            <Text fw={600} c="dark">{t(currentModule.name)}</Text>
                         </Group>
+                    ) : (
+                        <ThemeIcon size={24} variant="light" radius="sm">
+                            {renderIcon(currentModule.lucideIcon, 16)}
+                        </ThemeIcon>
                     )}
 
-                    <Tooltip
-                        label={collapsed ? "Expandir menú" : "Contraer menú"}
-                        position="right"
-                        disabled={!collapsed}
-                    >
-                        <ActionIcon
-                            variant="subtle"
-                            onClick={handleToggle}
-                            size="lg"
+                    <Group gap="xs">
+                        <Tooltip
+                            label="Volver al Dashboard"
+                            position="right"
+                            disabled={!collapsed}
                         >
-                            <IconMenu2 size={18} />
-                        </ActionIcon>
-                    </Tooltip>
+                            <ActionIcon
+                                variant="subtle"
+                                onClick={handleBackToDashboard}
+                                size="lg"
+                                color="blue"
+                            >
+                                <IconArrowLeft size={18} />
+                            </ActionIcon>
+                        </Tooltip>
+
+                        <Tooltip
+                            label={collapsed ? "Expandir menú" : "Contraer menú"}
+                            position="right"
+                            disabled={!collapsed}
+                        >
+                            <ActionIcon
+                                variant="subtle"
+                                onClick={handleToggle}
+                                size="lg"
+                            >
+                                <IconMenu2 size={18} />
+                            </ActionIcon>
+                        </Tooltip>
+                    </Group>
                 </Group>
             </Box>
 
@@ -339,7 +400,7 @@ export default function Sidebar({ lng, tenant, onToggle }: SidebarProps) {
             <ScrollArea className={classes.links}>
                 <Box className={classes.linksInner}>
                     <Stack gap="xs">
-                        {userModules.map((module) => (
+                        {modulesToShow.map((module) => (
                             <LinksGroup
                                 key={module.id}
                                 icon={getIconComponent(module.lucideIcon)}
@@ -358,12 +419,12 @@ export default function Sidebar({ lng, tenant, onToggle }: SidebarProps) {
                 </Box>
             </ScrollArea>
 
-            {!collapsed && (
+            {!collapsed && currentModule.subModules && (
                 <Box className={classes.footer}>
                     <Divider mb="sm" />
                     <Group justify="center">
                         <Badge variant="light" size="sm">
-                            {userModules.length} módulos
+                            {currentModule.subModules.length} submódulos
                         </Badge>
                     </Group>
                 </Box>

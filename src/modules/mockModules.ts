@@ -22,7 +22,7 @@ export interface Module {
 export const modulesConfig: Module[] = [
     {
         id: 'shrimp',
-        name: 'dashboard.modules.shrimp.name',
+        name: 'modules.shrimp.name',
         description: 'dashboard.modules.shrimp.description',
         icon: '/icons/shrimp.png',
         lucideIcon: 'Fish',
@@ -69,7 +69,7 @@ export const modulesConfig: Module[] = [
     },
     {
         id: 'laying-hens',
-        name: 'dashboard.modules.laying-hens.name',
+        name: 'modules.laying-hens.name',
         description: 'dashboard.modules.laying-hens.description',
         icon: '/icons/laying-hens.jpeg',
         lucideIcon: 'Bird',

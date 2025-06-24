@@ -82,10 +82,10 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold text-gray-900">
-                                {t('dashboard.modules.shrimp.name')}
+                                {t('modules.shrimp.name')}
                             </h1>
                             <p className="text-gray-600">
-                                {t('dashboard.modules.shrimp.description')}
+                                {t('modules.shrimp.description')}
                             </p>
                         </div>
                     </div>
