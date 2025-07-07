@@ -233,7 +233,6 @@
       "price": "$199/month"
     }
   },
-
   "marketplace": {
     "title": "Marketplace",
     "subtitle": "Expand your company's capabilities",
@@ -342,6 +341,15 @@
             "description": "Documentation and export tracking"
           }
         }
+      },
+      "cycles": {
+        "title": "Production cycles"
+      },
+      "pools": {
+        "title": "Swimming pools"
+      },
+      "inventory": {
+        "title": "Inventory"
       }
     },
     "tilapia": {

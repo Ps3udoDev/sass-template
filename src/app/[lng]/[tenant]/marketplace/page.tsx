@@ -38,6 +38,7 @@ import {
     type AdditionalService,
     type MarketplacePackage
 } from '@/modules/marketplaceConfig';
+import { useUserStore } from '@/app/store/userStore';
 
 interface MarketplacePageProps {
     params: Promise<{ lng: string; tenant: string }>;
@@ -59,24 +60,15 @@ export default function MarketplacePage({ params }: MarketplacePageProps) {
     const [viewMode, setViewMode] = useState<ViewMode>('grid');
     const [isLoading, setIsLoading] = useState(false);
 
-    // Datos del usuario
-    const [userModules, setUserModules] = useState<string[]>([]);
-    const [userServices, setUserServices] = useState<string[]>([]);
-    const [userPackages, setUserPackages] = useState<string[]>([]);
 
-    // Datos filtrados
+
     const [filteredModules, setFilteredModules] = useState<MarketplaceModule[]>([]);
     const [filteredServices, setFilteredServices] = useState<AdditionalService[]>([]);
 
-    // Cargar datos del usuario al inicio
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const session = JSON.parse(localStorage.getItem('session') || '{}');
-            setUserModules(session.ownedModules || session.modules || []);
-            setUserServices(session.ownedServices || []);
-            setUserPackages(session.ownedPackages || []);
-        }
-    }, []);
+    const { user } = useUserStore();
+    const userModules = user?.ownedModules || [];
+    const userServices = user?.ownedServices || [];
+    const userPackages = user?.ownedPackages || [];
 
     // Filtrar contenido basado en categoría y búsqueda
     useEffect(() => {

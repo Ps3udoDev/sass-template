@@ -5,6 +5,7 @@ import { getAvailableModules } from "@/modules/mockModules";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { Sparkles, Zap } from "lucide-react";
+import { useUserStore } from "@/app/store/userStore";
 
 interface DashboardPageProps {
   params: Promise<{ lng: string; tenant: string }>;
@@ -15,8 +16,9 @@ export default function DashboardPage({ params }: DashboardPageProps) {
   const { lng, tenant } = resolvedParams;
   const t = useTranslations();
 
-  const session = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('session') || '{}') : {};
-  const userModules = session.modules || [];
+  const { user } = useUserStore();
+  console.log(user)
+  const userModules = user?.ownedModules || [];
 
   const availableModules = getAvailableModules(userModules);
 
@@ -26,7 +28,6 @@ export default function DashboardPage({ params }: DashboardPageProps) {
 
 
 
-        {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="card p-4">
             <div className="flex items-center justify-between">
@@ -61,7 +62,6 @@ export default function DashboardPage({ params }: DashboardPageProps) {
           </div>
         </div>
 
-        {/* Modules Section */}
         <div className="mb-6">
           <div className="flex items-center justify-end mb-6">
 
@@ -71,7 +71,6 @@ export default function DashboardPage({ params }: DashboardPageProps) {
           </div>
         </div>
 
-        {/* Modules Grid */}
         {availableModules.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {availableModules.map((mod) => (
@@ -87,20 +86,11 @@ export default function DashboardPage({ params }: DashboardPageProps) {
             ))}
           </div>
         ) : (
-          /* Empty State */
           <div className="text-center py-12">
             <div className="w-20 h-20 bg-muted/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Sparkles size={32} className="text-muted" />
             </div>
-            <h3 className="text-lg font-semibold text-secondary mb-2">
-              {t('dashboard.empty.title', { default: 'No hay módulos disponibles' })}
-            </h3>
-            <p className="text-muted mb-6 max-w-md mx-auto">
-              {t('dashboard.empty.description', { default: 'Contacta con tu administrador para activar módulos adicionales' })}
-            </p>
-            <button className="btn-secondary px-6 py-2">
-              {t('dashboard.empty.action', { default: 'Contactar Soporte' })}
-            </button>
+
           </div>
         )}
 

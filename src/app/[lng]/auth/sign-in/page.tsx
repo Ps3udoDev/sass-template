@@ -8,6 +8,7 @@ import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { mockUsers } from "@/mock/users";
+import { useUserStore } from "@/app/store/userStore";
 
 interface SignInFormData {
     email: string;
@@ -28,6 +29,8 @@ export default function SignInPage({ params }: SignInPageProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    const { login } = useUserStore();
+
     const {
         register,
         handleSubmit,
@@ -38,24 +41,17 @@ export default function SignInPage({ params }: SignInPageProps) {
         setIsLoading(true);
         setError(null);
 
-        try {
-            // Simular delay de autenticación
-            await new Promise(resolve => setTimeout(resolve, 1000));
+        const success = await login(data.email, data.password);
+        console.log(success)
 
-            const { email, password } = data;
-            const user = mockUsers.find((user) => user.email === email && user.password === password);
-
-            if (user) {
-                localStorage.setItem('session', JSON.stringify(user));
-                router.push(`/${lng}/${user.tenant}/dashboard`);
-            } else {
-                setError(t('errors.invalidCredentials'));
-            }
-        } catch (err) {
-            setError(t('errors.serverError'));
-        } finally {
-            setIsLoading(false);
+        if (success) {
+            const user = useUserStore.getState().user;
+            router.push(`/${lng}/${user?.tenant}/dashboard`);
+        } else {
+            setError(t('errors.invalidCredentials'));
         }
+
+        setIsLoading(false);
     };
 
     return (
@@ -111,6 +107,7 @@ export default function SignInPage({ params }: SignInPageProps) {
                                     `}
                                     placeholder={t('emailPlaceholder')}
                                     disabled={isLoading}
+                                    suppressHydrationWarning={true}
                                 />
                             </div>
                             {errors.email && (
@@ -147,6 +144,7 @@ export default function SignInPage({ params }: SignInPageProps) {
                                     `}
                                     placeholder={t('passwordPlaceholder')}
                                     disabled={isLoading}
+                                    suppressHydrationWarning={true}
                                 />
                                 <button
                                     type="button"
@@ -205,14 +203,7 @@ export default function SignInPage({ params }: SignInPageProps) {
             <div className="flex-1 relative overflow-hidden bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-20">
-                    <div
-                        className="w-full h-full"
-                        style={{
-                            backgroundImage: `radial-gradient(circle at 25% 25%, var(--color-primary) 0%, transparent 50%),
-                                             radial-gradient(circle at 75% 75%, var(--color-accent) 0%, transparent 50%)`,
-                            filter: 'blur(100px)'
-                        }}
-                    />
+                    <div className="w-full h-full bg-login-pattern blur-[100px]" />
                 </div>
 
                 {/* Glass Card */}

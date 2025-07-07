@@ -11,15 +11,15 @@ import HeaderLanding from './HeaderLanding';
 import HeaderTenant from './HeaderTenant';
 import MobileMenu from './MobileMenu';
 import { useTheme } from 'next-themes';
+import { useUserStore } from '@/app/store/userStore';
 
 export default function Header({ lng, tenant }: HeaderProps) {
     const router = useRouter();
-
-    const [session, setSession] = useState<SessionData | null>(null);
     const [tenantData, setTenantData] = useState<TenantData | null>(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const { theme, resolvedTheme } = useTheme();
+    const { user, isAuthenticated, logout, isHydrated } = useUserStore();
 
     useEffect(() => {
         console.log('🎨 Tema actual:', {
@@ -31,20 +31,14 @@ export default function Header({ lng, tenant }: HeaderProps) {
 
     const isTenantMode = !!tenant;
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const sessionData = localStorage.getItem('session');
-            if (sessionData) {
-                const parsedSession = JSON.parse(sessionData);
-                setSession(parsedSession);
 
-                if (isTenantMode && parsedSession.tenant) {
-                    const currentTenant = mockTenants.find(t => t.id === parsedSession.tenant);
-                    setTenantData(currentTenant || null);
-                }
-            }
+
+    useEffect(() => {
+        if (isHydrated && isTenantMode && user?.tenant) {
+            const currentTenant = mockTenants.find(t => t.id === user.tenant);
+            setTenantData(currentTenant || null);
         }
-    }, [isTenantMode]);
+    }, [isTenantMode, user, isHydrated]);
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
@@ -58,12 +52,12 @@ export default function Header({ lng, tenant }: HeaderProps) {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('session');
+        logout();
         router.push(`/${lng}/auth/sign-in`);
     };
 
     const getNavigationConfig = () => {
-        const tenantPermissions = tenantData?.modules || [];
+        const tenantPermissions = tenantData?.modules || user?.ownedModules || [];
         return filterNavigationByTenant(navigationConfig, tenantPermissions);
     };
 
@@ -99,7 +93,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
                             lng={lng}
                             tenant={tenant!}
                             navigationItems={preparedNavItems}
-                            session={session}
+                            session={user}
                             tenantData={tenantData}
                             onLogout={handleLogout}
                         />
@@ -127,7 +121,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
                 lng={lng}
                 tenant={tenant}
                 navigationItems={preparedNavItems}
-                session={session}
+                session={user}
                 onScrollToSection={scrollToSection}
                 onLogout={handleLogout}
                 onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

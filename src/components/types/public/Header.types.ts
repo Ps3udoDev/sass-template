@@ -1,14 +1,11 @@
+import { User } from "@/app/store/types/store.types";
+
 export interface HeaderProps {
     lng: string;
     tenant?: string;
 }
 
-export interface SessionData {
-    email: string;
-    password: string;
-    tenant: string;
-    modules: string[];
-}
+export interface SessionData extends User { }
 
 export interface TenantData {
     id: string;

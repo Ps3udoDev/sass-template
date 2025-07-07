@@ -17,30 +17,20 @@ export default function IndustryCard({
             onClick={() => onSelect(industry.id)}
             className={`
                 card relative overflow-hidden cursor-pointer group
-                transition-all duration-300 hover:scale-105 hover-surface
                 min-h-[320px] ${className}
             `}
         >
-            {/* Background Image */}
             <div className="absolute inset-0">
                 <div className="relative h-40 overflow-hidden">
                     <Image
                         src={industry.icon}
                         alt={t(industry.name)}
                         fill
-                        className="object-cover transition-transform group-hover:scale-110 duration-500 opacity-90"
+                        className="object-cover "
                         priority={false}
                     />
-                    {/* Gradient overlay */}
-                    <div
-                        className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface"
-                        style={{
-                            background: `linear-gradient(to bottom,
-                                ${industry.color}20 0%,
-                                ${industry.color}40 30%,
-                                var(--color-surface) 100%)`
-                        }}
-                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface" />
                 </div>
             </div>
 
