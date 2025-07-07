@@ -36,7 +36,6 @@ export default function Home({ params }: HomeProps) {
                 <AboutSection
                     lng={lng}
                     variant="centered"
-                    backgroundStyle="none"
                     showStats={true}
                 />
             </div>
