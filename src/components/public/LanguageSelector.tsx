@@ -130,9 +130,9 @@ export default function LanguageSelector({
         return (
             <div className={`
                 ${variant === 'mobile-menu' ? 'w-full px-3 py-2' : 'px-2 lg:px-3 py-2'}
-                animate-pulse bg-gray-200 dark:bg-gray-700 rounded-lg
+            animate-pulse bg-surface-secondary rounded-lg
             `}>
-                <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded"></div>
+                <div className="h-5 bg-border-secondary rounded"></div>
             </div>
         );
     }
@@ -140,7 +140,7 @@ export default function LanguageSelector({
     const renderButton = () => {
         const baseClasses = `
             flex items-center gap-2 transition-all duration-200 rounded-lg
-            focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+            focus:outline-none focus-ring
         `;
 
         switch (variant) {
@@ -151,8 +151,7 @@ export default function LanguageSelector({
                         {...getReferenceProps()}
                         className={`${baseClasses}
                             px-3 py-2 w-full justify-between
-                            text-secondary dark:text-secondary-dark
-                            hover:text-primary hover:bg-soft dark:hover:bg-soft-dark
+                       text-secondary hover:text-primary hover-surface
                         `}
                     >
                         <div className="flex items-center gap-2">
@@ -173,8 +172,8 @@ export default function LanguageSelector({
                         {...getReferenceProps()}
                         className={`${baseClasses}
                             px-2 py-1.5
-                            text-secondary dark:text-secondary-dark
-                            hover:text-primary hover:bg-soft dark:hover:bg-soft-dark
+                          text-secondary
+                            hover:text-primary hover-surface
                         `}
                         title={currentLanguage.name}
                     >
@@ -191,8 +190,8 @@ export default function LanguageSelector({
                         {...getReferenceProps()}
                         className={`${baseClasses}
                             px-2 lg:px-3 py-2
-                            text-secondary dark:text-secondary-dark
-                            hover:text-primary hover:bg-soft dark:hover:bg-soft-dark
+                   text-secondary
+                            hover:text-primary hover-surface
                         `}
                         aria-label={`Cambiar idioma. Actual: ${currentLanguage.name}`}
                     >
@@ -229,21 +228,20 @@ export default function LanguageSelector({
                 }}
                 {...getFloatingProps()}
                 className={`
-                    bg-white dark:bg-gray-800 rounded-lg shadow-lg
-                    border border-gray-200 dark:border-gray-700
+                card rounded-lg shadow-lg
                     z-50 overflow-hidden
                     transition-opacity duration-150 ease-out
                     ${isMobileVariant ? 'w-[280px]' : 'w-[200px]'}
                 `}
             >
                 {isMobileVariant && (
-                    <div className="flex items-center justify-between p-3 border-b border-gray-200 dark:border-gray-700">
-                        <h3 className="font-semibold text-foreground dark:text-foreground-dark">
+                    <div className="flex items-center justify-between p-3 border-b border-default">
+                        <h3 className="font-semibold text-primary">
                             Seleccionar idioma
                         </h3>
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-colors"
+                            className="p-1 hover-surface rounded transition-colors"
                         >
                             <X size={16} />
                         </button>
@@ -258,10 +256,10 @@ export default function LanguageSelector({
                             className={`
                                 w-full flex items-center gap-3 px-4 py-3 text-left
                                 transition-colors duration-200
-                                hover:bg-soft dark:hover:bg-soft-dark
+                            hover-surface
                                 ${language.code === currentLang
                                     ? 'bg-primary/10 text-primary border-r-2 border-primary'
-                                    : 'text-secondary dark:text-secondary-dark'
+                                    : 'text-secondary'
                                 }
                             `}
                         >
