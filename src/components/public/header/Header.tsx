@@ -10,6 +10,7 @@ import HeaderLogo from './HeaderLogo';
 import HeaderLanding from './HeaderLanding';
 import HeaderTenant from './HeaderTenant';
 import MobileMenu from './MobileMenu';
+import { useTheme } from 'next-themes';
 
 export default function Header({ lng, tenant }: HeaderProps) {
     const router = useRouter();
@@ -17,6 +18,16 @@ export default function Header({ lng, tenant }: HeaderProps) {
     const [session, setSession] = useState<SessionData | null>(null);
     const [tenantData, setTenantData] = useState<TenantData | null>(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const { theme, resolvedTheme } = useTheme();
+
+    useEffect(() => {
+        console.log('🎨 Tema actual:', {
+            theme,
+            resolvedTheme,
+            systemPreference: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        });
+    }, [theme, resolvedTheme]);
 
     const isTenantMode = !!tenant;
 
@@ -70,7 +81,8 @@ export default function Header({ lng, tenant }: HeaderProps) {
     });
 
     return (
-        <header className="fixed top-0 w-full px-4 sm:px-6 py-3 sm:py-4 shadow-sm bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-700">
+        <header className="fixed top-0 w-full px-4 sm:px-6 py-3 sm:py-4 shadow-sm bg-header z-50 border-b border-default transition-theme">
+
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex-shrink-0">
                     <HeaderLogo
@@ -102,7 +114,7 @@ export default function Header({ lng, tenant }: HeaderProps) {
 
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="xl:hidden p-2 text-secondary dark:text-secondary-dark hover:text-primary rounded-lg hover:bg-soft dark:hover:bg-soft-dark transition-colors duration-200"
+                    className="xl:hidden p-2 text-secondary hover:text-primary rounded-lg hover-surface transition-colors duration-200"
                     aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

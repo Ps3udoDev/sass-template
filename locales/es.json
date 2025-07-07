@@ -27,7 +27,7 @@
   },
   "dashboard": {
     "landing": {
-     "heroSection": {
+      "heroSection": {
         "badge": "Plataforma SaaS Líder",
         "title": "La plataforma inteligente para gestión productiva de alimentos",
         "subtitle": "Optimiza tus operaciones con módulos personalizables para camaroneras, ganadería, tilapia y más.",
@@ -41,7 +41,7 @@
           "optimization": "Optimización de costos"
         }
       },
-    "aboutSection": {
+      "aboutSection": {
         "badge": "Nuestra Misión",
         "title": "Construimos herramientas para quienes alimentan al mundo",
         "description": "Somos una plataforma SaaS diseñada para productores de alimentos que buscan eficiencia, control y escalabilidad. Desde pequeñas granjas hasta operaciones industriales, nuestra tecnología se adapta a cada proceso productivo.",
@@ -99,7 +99,7 @@
           "button": "Hablar con un experto"
         }
       },
-     "modulesSection": {
+      "modulesSection": {
         "badge": "Módulos Especializados",
         "title": "Módulos que se adaptan a tu operación",
         "description": "Desde el estanque hasta el corral, elige los módulos que necesitas y agrégalos en cualquier momento.",
@@ -129,7 +129,7 @@
         }
       },
 
-     "finalCta": {
+      "finalCta": {
         "badge": "Únete a SyncLiv",
         "title": "Comienza a transformar tu producción hoy",
         "description": "Agenda una demo gratuita y descubre cómo podemos ayudarte a crecer sin complicaciones.",
@@ -233,34 +233,234 @@
       "price": "$199/mes"
     }
   },
+  "marketplace": {
+    "title": "Marketplace",
+    "subtitle": "Expande las capacidades de tu empresa",
+    "description": "Descubre módulos especializados para tu industria",
+    "search": {
+      "placeholder": "Buscar módulos y servicios...",
+      "noResults": "No se encontraron resultados",
+      "noResultsDescription": "Intenta con otros términos de búsqueda"
+    },
+    "categories": {
+      "all": "Todos",
+      "industries": "Por Industria",
+      "modules": "Módulos",
+      "services": "Servicios",
+      "packages": "Paquetes"
+    },
+    "industries": {
+      "aquaculture": {
+        "name": "Acuicultura",
+        "description": "Soluciones para cultivo de especies acuáticas",
+        "subtitle": "Camarones, tilapia, truchas y más"
+      },
+      "livestock": {
+        "name": "Ganadería",
+        "description": "Gestión integral de ganado y pastoreo",
+        "subtitle": "Bovinos, porcinos, ovinos y caprinos"
+      },
+      "poultry": {
+        "name": "Avicultura",
+        "description": "Control avícola especializado",
+        "subtitle": "Ponedoras, engorde y aves ornamentales"
+      }
+    },
+    "buttons": {
+      "buyNow": "Comprar Ahora",
+      "addToCart": "Agregar al Carrito",
+      "viewDetails": "Ver Detalles",
+      "requestDemo": "Solicitar Demo"
+    },
+    "pricing": {
+      "monthly": "mes",
+      "annual": "año",
+      "oneTime": "único",
+      "from": "desde"
+    },
+    "badges": {
+      "popular": "Popular",
+      "premium": "Premium",
+      "new": "Nuevo",
+      "bestseller": "Más Vendido",
+      "included": "Incluido"
+    },
+    "services": {
+      "base": {
+        "inventory": {
+          "name": "Gestión de Inventario",
+          "description": "Control completo de insumos y productos"
+        },
+        "cycles": {
+          "name": "Ciclos de Producción",
+          "description": "Planificación y seguimiento de ciclos productivos"
+        },
+        "reports": {
+          "name": "Reportes Básicos",
+          "description": "Informes esenciales para tu operación"
+        },
+        "notifications": {
+          "name": "Notificaciones",
+          "description": "Alertas y recordatorios automáticos"
+        }
+      }
+    }
+  },
   "modules": {
     "shrimp": {
-      "cycles": {
-        "title": "Ciclos",
-        "description": "Gestión de ciclos de producción",
-        "resume": {
-          "title": "Resumen",
-          "description": "Visualización y análisis de datos del ciclo"
+      "dashboard": {
+        "card": {
+          "name": "Camaronicultura",
+          "description": "Gestión completa de cultivo de camarones",
+          "subtitle": "Manejo de piscinas, ciclos y alimentación"
         }
       },
-      "pools": {
-        "title": "Piscinas",
-        "description": "Gestión de piscinas de camarones",
-        "pools": {
-          "title": "Piscinas",
-          "description": "Administración y monitoreo de piscinas"
+      "marketplace": {
+        "card": {
+          "name": "Camaronicultura",
+          "description": "Módulo especializado para cultivo de camarones",
+          "subtitle": "Incluye gestión de piscinas, alimentación y seguimiento",
+          "features": [
+            "Gestión de piscinas",
+            "Control de alimentación",
+            "Seguimiento de crecimiento",
+            "Análisis de calidad del agua"
+          ]
+        },
+        "services": {
+          "genetics": {
+            "name": "Análisis Genético",
+            "description": "Seguimiento genético y selección de reproductores"
+          },
+          "laboratory": {
+            "name": "Laboratorio",
+            "description": "Análisis de laboratorio y control de patógenos"
+          },
+          "export": {
+            "name": "Gestión de Exportación",
+            "description": "Documentación y seguimiento de exportaciones"
+          }
+        }
+      }
+    },
+    "tilapia": {
+      "marketplace": {
+        "card": {
+          "name": "Piscicultura de Tilapia",
+          "description": "Solución completa para cultivo de tilapia",
+          "subtitle": "Jaulas flotantes, alimentación y cosecha",
+          "features": [
+            "Gestión de jaulas flotantes",
+            "Control de alimentación",
+            "Programación de cosechas",
+            "Monitoreo ambiental"
+          ]
+        }
+      }
+    },
+    "cattle": {
+      "marketplace": {
+        "card": {
+          "name": "Ganadería Bovina",
+          "description": "Gestión integral de ganado bovino",
+          "subtitle": "Pastoreo, reproducción y sanidad",
+          "features": [
+            "Gestión de potreros",
+            "Control reproductivo",
+            "Seguimiento sanitario",
+            "Manejo de ordeño"
+          ]
+        }
+      }
+    },
+    "swine": {
+      "marketplace": {
+        "card": {
+          "name": "Porcicultura",
+          "description": "Control especializado en cerdos",
+          "subtitle": "Alimentación, sanidad y reproducción",
+          "features": [
+            "Gestión de cerdos",
+            "Control de alimentación",
+            "Manejo sanitario",
+            "Análisis de rentabilidad"
+          ]
         }
       }
     },
     "laying-hens": {
-      "cycles": {
-        "title": "Ciclos",
-        "description": "Gestión de ciclos de producción",
-        "resume": {
-          "title": "Resumen",
-          "description": "Visualización y análisis de datos del ciclo"
+      "dashboard": {
+        "card": {
+          "name": "Gallinas Ponedoras",
+          "description": "Control integral de producción avícola",
+          "subtitle": "Gestión de ciclos y producción de huevos"
+        }
+      },
+      "marketplace": {
+        "card": {
+          "name": "Gallinas Ponedoras",
+          "description": "Solución avícola para producción de huevos",
+          "subtitle": "Ponedoras, incubación y calidad",
+          "features": [
+            "Control de ponedoras",
+            "Gestión de huevos",
+            "Incubación",
+            "Control de calidad"
+          ]
+        },
+        "services": {
+          "breeding": {
+            "name": "Gestión Reproductiva",
+            "description": "Control de incubación y reproducción"
+          },
+          "nutrition": {
+            "name": "Nutrición Avanzada",
+            "description": "Formulación optimizada de dietas"
+          },
+          "quality": {
+            "name": "Control de Calidad",
+            "description": "Clasificación y control de calidad de huevos"
+          }
+        }
+      }
+    },
+    "broilers": {
+      "marketplace": {
+        "card": {
+          "name": "Pollos de Engorde",
+          "description": "Optimización para producción de carne",
+          "subtitle": "Engorde, alimentación y procesamiento",
+          "features": [
+            "Control de engorde",
+            "Optimización alimentaria",
+            "Seguimiento de peso",
+            "Programación de procesamiento"
+          ]
         }
       }
     }
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "subtitle": "Accede a tu cuenta",
+    "welcome": "Bienvenido de vuelta",
+    "description": "Ingresa tus credenciales para continuar",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@email.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Tu contraseña",
+    "submit": "Iniciar Sesión",
+    "submitting": "Iniciando...",
+    "rememberMe": "Recordarme",
+    "errors": {
+      "emailRequired": "El correo es requerido",
+      "emailInvalid": "Correo inválido",
+      "passwordRequired": "La contraseña es requerida",
+      "passwordMin": "Mínimo 6 caracteres",
+      "invalidCredentials": "Credenciales inválidas",
+      "serverError": "Error del servidor"
+    },
+    "brandMessage": "Transforma tu producción con tecnología inteligente",
+    "brandSubtitle": "Plataforma líder para la gestión productiva de alimentos"
   }
 }

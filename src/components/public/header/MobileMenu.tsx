@@ -33,7 +33,7 @@ export default function MobileMenu({
     };
 
     return (
-        <div className="xl:hidden absolute top-full left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-lg z-40">
+        <div className="xl:hidden absolute top-full left-0 right-0 bg-surface border-t border-default shadow-lg z-40">
 
             <div className="px-6 py-4 space-y-4">
                 {isTenantMode ? (
@@ -47,7 +47,7 @@ export default function MobileMenu({
                                     <Link
                                         key={item.key}
                                         href={getFullHref(item.href!)}
-                                        className="flex items-center gap-3 text-secondary dark:text-secondary-dark hover:text-primary py-2 transition-colors duration-200 rounded-lg hover:bg-soft dark:hover:bg-soft-dark px-2"
+                                        className="flex items-center gap-3 text-secondary hover:text-primary py-2 transition-colors duration-200 rounded-lg hover-surface px-2"
                                         onClick={onToggle}
                                     >
                                         {IconComponent && <IconComponent size={18} className="text-primary" />}
@@ -58,8 +58,8 @@ export default function MobileMenu({
                         }
 
                         {session && (
-                            <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
-                                <div className="flex items-center gap-3 mb-3 p-2 rounded-lg bg-soft dark:bg-soft-dark">
+                            <div className="border-t border-default pt-4 mt-4">
+                                <div className="flex items-center gap-3 mb-3 p-2 rounded-lg bg-surface-secondary">
                                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-medium">
                                         {session.email.charAt(0).toUpperCase()}
                                     </div>
@@ -97,7 +97,7 @@ export default function MobileMenu({
                                         onScrollToSection?.(item.key);
                                         onToggle();
                                     }}
-                                    className="block w-full text-left text-secondary dark:text-secondary-dark hover:text-primary py-3 px-2 font-medium transition-colors duration-200 rounded-lg hover:bg-soft dark:hover:bg-soft-dark"
+                                    className="block w-full text-left text-secondary hover:text-primary py-3 px-2 font-medium transition-colors duration-200 rounded-lg hover-surface"
                                 >
                                     {t(item.label)}
                                 </button>
@@ -106,7 +106,7 @@ export default function MobileMenu({
 
                         <Link
                             href={`/${lng}/auth/sign-in`}
-                            className="block w-full bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-lg text-center font-medium transition-colors duration-200 shadow-sm"
+                            className="btn-primary block w-full px-4 py-3 text-center text-xs lg:text-sm xl:text-base"
                             onClick={onToggle}
                         >
                             {t('header.landing.login')}
@@ -114,7 +114,7 @@ export default function MobileMenu({
                     </>
                 )}
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex items-center justify-between pt-4 border-t border-default">
                     <div className="flex items-center gap-4">
                         <LanguageSelector currentLang={lng} variant="mobile-menu" />
                         <ThemeToggle />

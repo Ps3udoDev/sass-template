@@ -12,7 +12,7 @@ export interface AboutSectionProps {
     stats?: AboutStat[];
     showStats?: boolean;
     variant?: 'default' | 'centered' | 'minimal';
-    backgroundStyle?: 'clean' | 'subtle-gradient' | 'none';
+    backgroundStyle?: 'clean' | 'surface';
     className?: string;
 }
 

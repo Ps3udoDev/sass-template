@@ -74,7 +74,7 @@ export default function HeaderTenant({
                 })
             }
 
-            <div className="flex items-center gap-1 lg:gap-2 xl:gap-3 ml-2 lg:ml-4 xl:ml-6 pl-2 lg:pl-4 xl:pl-6 border-l border-gray-200 dark:border-gray-700">
+            <div className="flex items-center gap-1 lg:gap-2 xl:gap-3 ml-2 lg:ml-4 xl:ml-6 pl-2 lg:pl-4 xl:pl-6 border-l border-default">
                 <div className="hidden lg:block">
                     <LanguageSelector currentLang={lng} variant="header" />
                 </div>

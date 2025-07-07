@@ -27,7 +27,7 @@
   },
   "dashboard": {
     "landing": {
-     "heroSection": {
+      "heroSection": {
         "badge": "Leading SaaS Platform",
         "title": "The intelligent platform for productive food management",
         "subtitle": "Optimize your operations with customizable modules for shrimp farms, livestock, tilapia, and more.",
@@ -41,7 +41,7 @@
           "optimization": "Cost optimization"
         }
       },
-    "aboutSection": {
+      "aboutSection": {
         "badge": "Our Mission",
         "title": "We build tools for those who feed the world",
         "description": "We are a SaaS platform designed for food producers who seek efficiency, control, and scalability. From small farms to industrial operations, our technology adapts to every productive process.",
@@ -233,36 +233,236 @@
       "price": "$199/month"
     }
   },
+
+  "marketplace": {
+    "title": "Marketplace",
+    "subtitle": "Expand your company's capabilities",
+    "description": "Discover specialized modules for your industry",
+    "search": {
+      "placeholder": "Search modules and services...",
+      "noResults": "No results found",
+      "noResultsDescription": "Try different search terms"
+    },
+    "categories": {
+      "all": "All",
+      "industries": "By Industry",
+      "modules": "Modules",
+      "services": "Services",
+      "packages": "Packages"
+    },
+    "industries": {
+      "aquaculture": {
+        "name": "Aquaculture",
+        "description": "Solutions for aquatic species cultivation",
+        "subtitle": "Shrimp, tilapia, trout and more"
+      },
+      "livestock": {
+        "name": "Livestock",
+        "description": "Comprehensive cattle and grazing management",
+        "subtitle": "Cattle, swine, sheep and goats"
+      },
+      "poultry": {
+        "name": "Poultry",
+        "description": "Specialized poultry control",
+        "subtitle": "Layers, broilers and ornamental birds"
+      }
+    },
+    "buttons": {
+      "buyNow": "Buy Now",
+      "addToCart": "Add to Cart",
+      "viewDetails": "View Details",
+      "requestDemo": "Request Demo"
+    },
+    "pricing": {
+      "monthly": "month",
+      "annual": "year",
+      "oneTime": "one-time",
+      "from": "from"
+    },
+    "badges": {
+      "popular": "Popular",
+      "premium": "Premium",
+      "new": "New",
+      "bestseller": "Bestseller",
+      "included": "Included"
+    },
+    "services": {
+      "base": {
+        "inventory": {
+          "name": "Inventory Management",
+          "description": "Complete control of supplies and products"
+        },
+        "cycles": {
+          "name": "Production Cycles",
+          "description": "Planning and tracking of production cycles"
+        },
+        "reports": {
+          "name": "Basic Reports",
+          "description": "Essential reports for your operation"
+        },
+        "notifications": {
+          "name": "Notifications",
+          "description": "Automatic alerts and reminders"
+        }
+      }
+    }
+  },
   "modules": {
     "shrimp": {
-      "name": "Shrimp",
-      "cycles": {
-        "title": "Cycles",
-        "description": "Manage shrimp cycles",
-        "resume": {
-          "title": "Resume",
-          "description": "Visualization and analysis of cycle data"
+      "dashboard": {
+        "card": {
+          "name": "Shrimp Farming",
+          "description": "Complete shrimp cultivation management",
+          "subtitle": "Pool management, cycles and feeding"
         }
       },
-      "pools": {
-        "title": "Pools",
-        "description": "Manage shrimp pools",
-        "pools": {
-          "title": "Pools",
-          "description": "Management and monitoring of shrimp pools"
+      "marketplace": {
+        "card": {
+          "name": "Shrimp Farming",
+          "description": "Specialized module for shrimp cultivation",
+          "subtitle": "Includes pool management, feeding and monitoring",
+          "features": [
+            "Pool management",
+            "Feeding control",
+            "Growth monitoring",
+            "Water quality analysis"
+          ]
+        },
+        "services": {
+          "genetics": {
+            "name": "Genetic Analysis",
+            "description": "Genetic tracking and breeder selection"
+          },
+          "laboratory": {
+            "name": "Laboratory",
+            "description": "Laboratory analysis and pathogen control"
+          },
+          "export": {
+            "name": "Export Management",
+            "description": "Documentation and export tracking"
+          }
+        }
+      }
+    },
+    "tilapia": {
+      "marketplace": {
+        "card": {
+          "name": "Tilapia Farming",
+          "description": "Complete solution for tilapia cultivation",
+          "subtitle": "Floating cages, feeding and harvesting",
+          "features": [
+            "Floating cage management",
+            "Feeding control",
+            "Harvest scheduling",
+            "Environmental monitoring"
+          ]
+        }
+      }
+    },
+    "cattle": {
+      "marketplace": {
+        "card": {
+          "name": "Cattle Farming",
+          "description": "Comprehensive cattle management",
+          "subtitle": "Grazing, reproduction and health",
+          "features": [
+            "Pasture management",
+            "Reproductive control",
+            "Health monitoring",
+            "Milking management"
+          ]
+        }
+      }
+    },
+    "swine": {
+      "marketplace": {
+        "card": {
+          "name": "Swine Farming",
+          "description": "Specialized pig control",
+          "subtitle": "Feeding, health and reproduction",
+          "features": [
+            "Pig management",
+            "Feeding control",
+            "Health management",
+            "Profitability analysis"
+          ]
         }
       }
     },
     "laying-hens": {
-      "name": "layin-hens",
-      "cycles": {
-        "title": "Cycles",
-        "description": "Manage laying hens cycles",
-        "resume": {
-          "title": "Resume",
-          "description": "Visualization and analysis of cycle data"
+      "dashboard": {
+        "card": {
+          "name": "Laying Hens",
+          "description": "Comprehensive poultry production control",
+          "subtitle": "Cycle management and egg production"
+        }
+      },
+      "marketplace": {
+        "card": {
+          "name": "Laying Hens",
+          "description": "Poultry solution for egg production",
+          "subtitle": "Layers, incubation and quality",
+          "features": [
+            "Layer control",
+            "Egg management",
+            "Incubation",
+            "Quality control"
+          ]
+        },
+        "services": {
+          "breeding": {
+            "name": "Reproductive Management",
+            "description": "Incubation and reproduction control"
+          },
+          "nutrition": {
+            "name": "Advanced Nutrition",
+            "description": "Optimized diet formulation"
+          },
+          "quality": {
+            "name": "Quality Control",
+            "description": "Egg classification and quality control"
+          }
+        }
+      }
+    },
+    "broilers": {
+      "marketplace": {
+        "card": {
+          "name": "Broiler Chickens",
+          "description": "Optimization for meat production",
+          "subtitle": "Fattening, feeding and processing",
+          "features": [
+            "Fattening control",
+            "Feed optimization",
+            "Weight tracking",
+            "Processing scheduling"
+          ]
         }
       }
     }
+  },
+
+  "login": {
+    "title": "Sign In",
+    "subtitle": "Access your account",
+    "welcome": "Welcome back",
+    "description": "Enter your credentials to continue",
+    "email": "Email address",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign In",
+    "submitting": "Signing in...",
+    "rememberMe": "Remember me",
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Minimum 6 characters",
+      "invalidCredentials": "Invalid credentials",
+      "serverError": "Server error"
+    },
+    "brandMessage": "Transform your production with intelligent technology",
+    "brandSubtitle": "Leading platform for productive food management"
   }
 }
