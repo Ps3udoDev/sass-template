@@ -310,7 +310,7 @@
     "shrimp": {
       "dashboard": {
         "card": {
-          "name": "Camaronicultura",
+          "name": "CamaronPlus",
           "description": "Gestión completa de cultivo de camarones",
           "subtitle": "Manejo de piscinas, ciclos y alimentación"
         }
@@ -368,6 +368,13 @@
       }
     },
     "cattle": {
+      "dashboard": {
+        "card": {
+          "name": "Pasturas - Pro",
+          "description": "Gestión completa de modulo ganadero",
+          "subtitle": "Manejo de potreros, unidades productivas entre otros"
+        }
+      },
       "marketplace": {
         "card": {
           "name": "Ganadería Bovina",

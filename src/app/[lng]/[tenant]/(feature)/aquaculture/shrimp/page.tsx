@@ -82,10 +82,10 @@ export default function ModuleDashboard({ params }: ModuleDashboardProps) {
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold text-gray-900">
-                                {t('modules.shrimp.name')}
+                                CamaronPlus
                             </h1>
                             <p className="text-gray-600">
-                                {t('modules.shrimp.description')}
+                                Gestion y administracion de piscinas de camarones
                             </p>
                         </div>
                     </div>

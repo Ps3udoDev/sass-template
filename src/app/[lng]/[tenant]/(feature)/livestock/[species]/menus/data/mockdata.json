@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "nombre": "Dashboard Principal",
+    "url": "/dashboard",
+    "descripcion": "Panel principal de control con métricas y estadísticas generales del sistema",
+    "activo": true,
+    "fechaCreacion": "2024-01-15T10:30:00Z",
+    "fechaActualizacion": "2024-07-01T14:20:00Z"
+  },
+  {
+    "id": 2,
+    "nombre": "Gestión de Animales",
+    "url": "/livestock/animals",
+    "descripcion": "Módulo para administrar y gestionar el inventario de animales del ganado",
+    "activo": true,
+    "fechaCreacion": "2024-02-10T09:15:00Z",
+    "fechaActualizacion": "2024-06-28T16:45:00Z"
+  },
+  {
+    "id": 3,
+    "nombre": "Control de Pasturas",
+    "url": "/livestock/pastures",
+    "descripcion": "Sistema de monitoreo y control de pasturas y rotación de campos",
+    "activo": false,
+    "fechaCreacion": "2024-03-05T11:20:00Z",
+    "fechaActualizacion": "2024-05-15T08:30:00Z"
+  },
+  {
+    "id": 4,
+    "nombre": "Reportes y Análisis",
+    "url": "/reports",
+    "descripcion": "Generación de reportes detallados y análisis de productividad del ganado",
+    "activo": true,
+    "fechaCreacion": "2024-01-20T13:45:00Z",
+    "fechaActualizacion": "2024-07-05T10:15:00Z"
+  },
+  {
+    "id": 5,
+    "nombre": "Configuración del Sistema",
+    "url": "/settings",
+    "descripcion": "Panel de configuración general del sistema y preferencias de usuario",
+    "activo": true,
+    "fechaCreacion": "2024-04-12T15:30:00Z",
+    "fechaActualizacion": "2024-06-30T12:20:00Z"
+  },
+  {
+    "id": 6,
+    "nombre": "Gestión de Usuarios",
+    "url": "/users",
+    "descripcion": "Administración de usuarios, roles y permisos del sistema",
+    "activo": false,
+    "fechaCreacion": "2024-02-28T16:00:00Z",
+    "fechaActualizacion": "2024-04-22T09:45:00Z"
+  }
+]

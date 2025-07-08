@@ -36,90 +36,74 @@ export const modulesConfig: Module[] = [
         subModules: [
             {
                 id: 'cycles',
-                name: 'modules.shrimp.cycles.title',
+                name: 'Ciclos',
                 href: '',
                 icon: '🔄',
                 lucideIcon: 'RefreshCw',
-                description: 'modules.shrimp.cycles.description',
+                description: 'Ciclos productivos',
                 subModules: [
                     {
                         id: 'resume',
-                        name: 'modules.shrimp.cycles.resume.title',
+                        name: 'Planificacion',
                         href: 'visualize',
                         icon: '📊',
                         lucideIcon: 'BarChart3',
-                        description: 'modules.shrimp.cycles.resume.description'
+                        description: 'Visualizacion de ciclos'
                     },
-                    {
-                        id: 'create',
-                        name: 'modules.shrimp.cycles.create.title',
-                        href: 'create',
-                        icon: '➕',
-                        lucideIcon: 'Plus',
-                        description: 'modules.shrimp.cycles.create.description'
-                    },
-                    {
-                        id: 'active',
-                        name: 'modules.shrimp.cycles.active.title',
-                        href: 'active',
-                        icon: '🟢',
-                        lucideIcon: 'Play',
-                        description: 'modules.shrimp.cycles.active.description'
-                    }
                 ]
             },
             {
                 id: 'pools',
-                name: 'modules.shrimp.pools.title',
+                name: 'Piscinas',
                 href: '',
                 icon: '🏊',
                 lucideIcon: 'Waves',
-                description: 'modules.shrimp.pools.description',
+                description: 'Administracion de piscinas',
                 subModules: [
                     {
                         id: 'pools',
-                        name: 'modules.shrimp.pools.pools.title',
+                        name: 'Piscinas',
                         href: 'pools',
                         icon: '🏊',
                         lucideIcon: 'Waves',
-                        description: 'modules.shrimp.pools.pools.description'
+                        description: 'Administracion'
                     },
-                    {
-                        id: 'monitoring',
-                        name: 'modules.shrimp.pools.monitoring.title',
-                        href: 'monitoring',
-                        icon: '📊',
-                        lucideIcon: 'Activity',
-                        description: 'modules.shrimp.pools.monitoring.description'
-                    }
+                    /*   {
+                          id: 'monitoring',
+                          name: 'modules.shrimp.pools.monitoring.title',
+                          href: 'monitoring',
+                          icon: '📊',
+                          lucideIcon: 'Activity',
+                          description: 'modules.shrimp.pools.monitoring.description'
+                      } */
                 ]
             },
-            {
-                id: 'inventory',
-                name: 'modules.shrimp.inventory.title',
-                href: '',
-                icon: '📦',
-                lucideIcon: 'Package',
-                description: 'modules.shrimp.inventory.description',
-                subModules: [
-                    {
-                        id: 'feed',
-                        name: 'modules.shrimp.inventory.feed.title',
-                        href: 'feed',
-                        icon: '🌾',
-                        lucideIcon: 'Wheat',
-                        description: 'modules.shrimp.inventory.feed.description'
-                    },
-                    {
-                        id: 'supplies',
-                        name: 'modules.shrimp.inventory.supplies.title',
-                        href: 'supplies',
-                        icon: '🧪',
-                        lucideIcon: 'TestTube',
-                        description: 'modules.shrimp.inventory.supplies.description'
-                    }
-                ]
-            }
+            /*  {
+                 id: 'inventory',
+                 name: 'modules.shrimp.inventory.title',
+                 href: '',
+                 icon: '📦',
+                 lucideIcon: 'Package',
+                 description: 'modules.shrimp.inventory.description',
+                 subModules: [
+                     {
+                         id: 'feed',
+                         name: 'modules.shrimp.inventory.feed.title',
+                         href: 'feed',
+                         icon: '🌾',
+                         lucideIcon: 'Wheat',
+                         description: 'modules.shrimp.inventory.feed.description'
+                     },
+                     {
+                         id: 'supplies',
+                         name: 'modules.shrimp.inventory.supplies.title',
+                         href: 'supplies',
+                         icon: '🧪',
+                         lucideIcon: 'TestTube',
+                         description: 'modules.shrimp.inventory.supplies.description'
+                     }
+                 ]
+             } */
         ]
     },
     {
@@ -197,80 +181,80 @@ export const modulesConfig: Module[] = [
         href: 'livestock/cattle',
         subModules: [
             {
-                id: 'herd',
-                name: 'modules.cattle.herd.title',
+                id: 'menu',
+                name: 'Menu',
                 href: '',
                 icon: '🐄',
                 lucideIcon: 'Users',
-                description: 'modules.cattle.herd.description',
+                description: 'Generacion de Menus',
                 subModules: [
                     {
-                        id: 'animals',
-                        name: 'modules.cattle.herd.animals.title',
-                        href: 'animals',
-                        icon: '🐮',
-                        lucideIcon: 'User',
-                        description: 'modules.cattle.herd.animals.description'
+                        id: 'menu-list',
+                        name: 'Listado de Menus',
+                        href: 'menus',
+                        icon: '📋',
+                        lucideIcon: 'List',
+                        description: 'Ver todos los menus'
                     },
                     {
-                        id: 'breeding',
-                        name: 'modules.cattle.herd.breeding.title',
-                        href: 'breeding',
-                        icon: '💝',
-                        lucideIcon: 'Heart',
-                        description: 'modules.cattle.herd.breeding.description'
+                        id: 'menu-new',
+                        name: 'Nuevo Menu',
+                        href: 'menus/new',
+                        icon: '🐮',
+                        lucideIcon: 'Plus',
+                        description: 'Crear nuevo menu'
                     }
                 ]
             },
             {
-                id: 'pastures',
-                name: 'modules.cattle.pastures.title',
+                id: 'submenu',
+                name: 'Submenu',
                 href: '',
                 icon: '🌱',
                 lucideIcon: 'Leaf',
-                description: 'modules.cattle.pastures.description',
+                description: 'Generacion de Submenus',
                 subModules: [
                     {
-                        id: 'fields',
-                        name: 'modules.cattle.pastures.fields.title',
-                        href: 'fields',
-                        icon: '🏞️',
-                        lucideIcon: 'Map',
-                        description: 'modules.cattle.pastures.fields.description'
+                        id: 'submenu-list',
+                        name: 'Listado de Submenus',
+                        href: 'submenus',
+                        icon: '📋',
+                        lucideIcon: 'List',
+                        description: 'Ver todos los submenus'
                     },
                     {
-                        id: 'rotation',
-                        name: 'modules.cattle.pastures.rotation.title',
-                        href: 'rotation',
-                        icon: '🔄',
-                        lucideIcon: 'RotateCcw',
-                        description: 'modules.cattle.pastures.rotation.description'
+                        id: 'submenu-new',
+                        name: 'Nuevo Submenu',
+                        href: 'submenus/new',
+                        icon: '🐮',
+                        lucideIcon: 'Plus',
+                        description: 'Crear nuevo submenu'
                     }
                 ]
             },
             {
-                id: 'production',
-                name: 'modules.cattle.production.title',
+                id: 'pantalla',
+                name: 'Pantalla',
                 href: '',
                 icon: '🥛',
                 lucideIcon: 'Milk',
-                description: 'modules.cattle.production.description',
+                description: 'Generacion de Panrtallas',
                 subModules: [
                     {
-                        id: 'milking',
-                        name: 'modules.cattle.production.milking.title',
-                        href: 'milking',
-                        icon: '🪣',
-                        lucideIcon: 'Container',
-                        description: 'modules.cattle.production.milking.description'
+                        id: 'pantallas-list',
+                        name: 'Listado de Pantallas',
+                        href: 'pantallas',
+                        icon: '📋',
+                        lucideIcon: 'List',
+                        description: 'Ver todas los pantallas'
                     },
                     {
-                        id: 'quality',
-                        name: 'modules.cattle.production.quality.title',
-                        href: 'quality',
-                        icon: '🔬',
-                        lucideIcon: 'TestTube',
-                        description: 'modules.cattle.production.quality.description'
+                        id: 'pantalla-new',
+                        name: 'Nueva Pantalla',
+                        href: 'pantallas/new',
+                        icon: '🐮',
+                        lucideIcon: 'Plus',
+                        description: 'Crear nueva pantalla'
                     }
                 ]
             }

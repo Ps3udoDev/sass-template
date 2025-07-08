@@ -3,7 +3,7 @@ export const mockUsers = [
         email: "user1@example.com",
         password: "pass123@",
         tenant: "shrimp-wave",
-        ownedModules: ["shrimp", "laying-hens"],
+        ownedModules: ["shrimp", "cattle"],
         ownedServices: ["genetics", "laboratory"],
         ownedPackages: [],
         subscription: {
